@@ -1,8 +1,8 @@
 <template>
   <v-dialog v-model="dialog" persistent max-width="450" content-class="br-20">
-    <v-card class="br-20">
+    <v-card class="br-20" style="background-color: #11111f; border:1px solid #777;">
       <div>
-        <v-row class="pa-4 ma-0 font-weight-medium background align-center">
+        <v-row class="pa-4 ma-0 font-weight-medium background align-center" style="background-color: #111111;">
           <div>Connect your wallet</div>
           &nbsp;
           <v-progress-circular v-if="loadConnect" indeterminate size="20" width="2" color="text"></v-progress-circular>
@@ -13,7 +13,7 @@
         </v-row>
 
         <v-expand-transition mode="out-in">
-          <v-card v-if="sClient.address" outlined class="background blocks br-0 d-flex align-center pa-3">
+          <v-card v-if="sClient.address" outlined class="background blocks br-0 d-flex align-center pa-3" >
             <img :src="require('@/assets/img/APEX.png')" width="40px">
             <div class="ml-3" style="flex: 1;">
               <div class="caption d-flex align-center white--text font-weight-medium">
