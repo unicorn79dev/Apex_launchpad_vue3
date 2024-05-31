@@ -32,7 +32,7 @@ const currentComponent = computed(() => {
 </script> -->
 
 <template>
-  <div class="pt-16 mt-8">
+  <div class="pt-16 mt-4">
     <v-slide-y-transition appear>
       <div>
         <div class="justify-center mx-auto" style="max-width: 580px;">
