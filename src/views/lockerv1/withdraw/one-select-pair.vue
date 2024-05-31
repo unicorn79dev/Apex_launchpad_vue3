@@ -1,9 +1,9 @@
 <template>
   <div>
-    <v-icon size="160" style="color: #000000!important; position: absolute; right: 50%; margin-right: -300px;">mdi-arrow-up-circle-outline</v-icon>
+    <v-icon size="180" style="color: #000000!important; position: absolute; right: 50%; margin-right: -300px; margin-top: -40px;">mdi-arrow-up-circle-outline</v-icon>
 
     <div style="position: relative;" class="mx-5">
-      <div class="display-1 textFaint--text font-weight-bold mb-8 mt-5" style="font-size: 36px;">
+      <div class="display-1 font-weight-bold mb-5 mt-8 ml-3" style="font-size: 33px; color: #ccc;">
         Edit / Withdraw
       </div>
 
