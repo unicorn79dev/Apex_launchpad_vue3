@@ -252,6 +252,19 @@ export default defineComponent( {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     };
 
+    const formatAmount = (_amount, _decimals) => {
+      var amount = Utils.convertMicroDenomToDenom(_amount, _decimals)
+      // var maxDigits = ethers.BigNumber.from(_amount).gt(ethers.BigNumber.from(10).pow(_decimals)) ? 2 : _decimals
+      var maxDigits = _decimals
+      if (_decimals > 0) {
+        if (_amount > 10 ** (_decimals - 1)) {
+          maxDigits = 2
+        }
+      }
+      return Number(amount).toLocaleString(undefined, {minimumFractionDigits: 0, maximumFractionDigits: maxDigits})
+    }
+    provide('formatAmount', formatAmount)
+
     watch(requiredNetwork, () => {
       wrongNetworkCheck();
     });

@@ -273,11 +273,12 @@ const fees = ref({
 });
 const tokenOnFeeWhitelist = ref(false);
 const chargeFeeSeperately = ref(true);
-
+const fa = inject('formatAmount');
 const sClient = computed(() => store.state.signer);
 const reqNetwork = computed(() => store.state.requiredNetwork);
 const tokenBalanceHuman = computed(() => {
-  return root.formatAmount(balance.value, tokenHydrated.value.decimals);
+  // return root.formatAmount(balance.value, tokenHydrated.value.decimals);
+  return fa(balance.value, tokenHydrated.value.decimals);
 });
 const allowanceIncreaseRequired = computed(() => {
   return Number(totalLockAmount.value) > Number(allowance.value);

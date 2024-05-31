@@ -1,5 +1,5 @@
 <template>
-  <div style="height: 350px;" class="rounded-lg">
+  <div class="rounded-lg">
     <!-- <div> -->
       <div :class="['d-flex align-center mt-5 mb-3 pa-3  br-20 mx-2', 'inputcolor']">
         <!-- <v-input v-model:value="filters.search" placeholder="Token address..." class=""></v-input> -->
