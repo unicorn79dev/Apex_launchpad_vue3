@@ -1,6 +1,6 @@
 <template>
   <v-container style="max-width: 600px;">
-    <v-card :class="['br-20 mb-16', isXs ? 'pa-4' : 'pa-6']">
+    <div class=" rounded-xl" style="background-color: #002;opacity: 0.8;border:1px solid #4a4865;padding: 20px;">
       <div class="d-flex align-center">
         <v-btn icon :to="`/browser/pairs`" color="text">
           <v-icon>mdi-arrow-left</v-icon>
@@ -24,7 +24,7 @@
           </div>
         </template>
       </div>
-    </v-card>
+    </div>
   </v-container>
 </template>
 

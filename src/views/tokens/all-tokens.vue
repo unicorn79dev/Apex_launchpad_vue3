@@ -1,27 +1,34 @@
 <template>
   <div style="height: 350px;" class="rounded-lg">
-    <div>
+    <!-- <div> -->
       <div :class="['d-flex align-center mt-5 mb-3 pa-3  br-20 mx-2', 'inputcolor']">
         <!-- <v-input v-model:value="filters.search" placeholder="Token address..." class=""></v-input> -->
-        <v-text-field
-          v-model="filters.search"
-          :loading="loading"
-          density="compact"
-          label="Token address..."
-          variant="solo"
-          hide-details
-          single-line
-          @click:append-inner="onClick"
-          bg-color="#292929"
-          style="height: 30px;"
+        <v-responsive
+          class="mx-auto"
+          max-width="100%"
+          style="border-radius: 30px;height: 40px;"
         >
-        </v-text-field>
-        <v-progress-circular v-if="showSearchLoader" indeterminate width="2" class="mr-2" size="24" color="primary"></v-progress-circular>
-        <v-icon v-if="filters.search === ''" >mdi-magnify</v-icon>
-        <v-icon v-else @click="filters.search = ''">mdi-close</v-icon>
-      
+          <v-text-field
+            v-model="filters.search"
+            :loading="loading"
+            density="compact"
+            label="Token address..."
+            variant="solo"
+            hide-details="auto"
+            single-line
+            @click:append-inner="onClick"
+            bg-color="#456"
+            style="opacity: 0.8;height: 100%;"
+          >
+          <div style="position: absolute;right: 10px;">
+            <v-progress-circular v-if="showSearchLoader" indeterminate width="2" class="mr-2" size="24" color="primary"></v-progress-circular>
+            <v-icon v-if="filters.search === ''" style="">mdi-magnify</v-icon>
+            <v-icon v-else @click="filters.search = ''">mdi-close</v-icon>
+          </div>
+          </v-text-field>
+        </v-responsive>
       </div>
-    </div>
+    <!-- </div> -->
 
     <div v-if="firstLoad" class="text-center pa-12">
       <v-progress-circular indeterminate size="80" width="3" color="#aaa">

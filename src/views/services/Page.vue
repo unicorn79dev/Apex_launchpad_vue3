@@ -1,10 +1,10 @@
 <template>
-  <div class="mt-16 pt-12">
-  <v-container style="max-width: 600px; background-color: #0a0815!important; border-radius: 5%; border-bottom: 0.5px solid #333;">
+  <div class="mt-16 pt-8" >
+  <v-container class="px-0" style="max-width: 600px; background-color: #0a0a1a!important; opacity: 0.87; border-radius: 5%; border-bottom: 0.5px solid #333;">
     <v-slide-y-transition appear>
       <!-- <div :class="['mb-16', isXs ? 'foreground v-card br-20' : 'v-card br-20 foreground']"> -->
       <div>
-        <div class="py-6 title text-center textFaint--text">
+        <div class="py-6 title text-center" style="color: #fff;font-size:20px;">
           Our CW20 Lockers
         </div>
         

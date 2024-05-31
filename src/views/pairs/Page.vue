@@ -1,32 +1,33 @@
 <template>
-  <v-container style="max-width: 650px;  opacity: 1;"  :class="{ 'pa-0 foreground': isXs }">
-    <div class="border-lg rounded-xl" style="background-color: #0a0815;">
+  <v-container style="max-width: 600px; padding: 10px; padding-top: 10px;"  :class="{ 'pa-0 foreground': isXs }">
+    <div class=" rounded-xl" style="background-color: #002;opacity: 0.8;border:1px solid #4a4865;">
       <div class="pt-5 pb-3 pl-2 pr-2">
         <div class="mb-5 d-flex align-center inputcolor pa-3 r-outlined br-20">
           <!-- <c-input v-model:value="filters.search" placeholder="Pair address..."></c-input> -->
-          <v-text-field
-          v-model="filters.search"
-          :loading="loading"
-          density="compact"
-          label="Pair address..."
-          variant="solo"
-          hide-details
-          single-line
-          @click:append-inner="onClick"
-          bg-color="#292929"
-          style="height: 30px;"
+          <v-responsive
+          class="mx-auto"
+          max-width="100%"
+          style="border-radius: 30px;height: 40px;"
         >
-        </v-text-field>
-          <v-progress-circular
-            v-if="showSearchLoader"
-            indeterminate
-            width="2"
-            class="mr-2"
-            size="24"
-            color="primary"
-          ></v-progress-circular>
-          <v-icon v-if="filters.search === ''">mdi-magnify</v-icon>
-          <v-icon v-else @click="clearSearch">mdi-close</v-icon>
+          <v-text-field
+            v-model="filters.search"
+            :loading="loading"
+            density="compact"
+            label="Token address..."
+            variant="solo"
+            hide-details="auto"
+            single-line
+            @click:append-inner="onClick"
+            bg-color="#456"
+            style="opacity: 0.8;height: 100%;"
+          >
+          <div style="position: absolute;right: 10px;">
+            <v-progress-circular v-if="showSearchLoader" indeterminate width="2" class="mr-2" size="24" color="primary"></v-progress-circular>
+            <v-icon v-if="filters.search === ''" style="">mdi-magnify</v-icon>
+            <v-icon v-else @click="filters.search = ''">mdi-close</v-icon>
+          </div>
+          </v-text-field>
+        </v-responsive>
         </div>
         <div class="d-flex align-center pl-2">
           <v-spacer></v-spacer>

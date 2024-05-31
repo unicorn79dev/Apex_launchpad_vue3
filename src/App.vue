@@ -1,20 +1,21 @@
 <template>
   <!-- <v-app :class="themeClass"> -->
   <v-app theme="dark" style="background-color: #06040c!important; box-shadow: 1px!important;">
+    <!-- <v-app :class="$store.state.theme === 'theme2' ? 'darktheme' : ''"> -->
     <!-- DESKTOP TOOLBAR -->
-    <v-app-bar v-if="isDesktop" app flat height="80" absolute color="#0a0815">
+    <v-app-bar v-if="isDesktop" app flat height="80" absolute color="#0a0815" style="border-bottom: 1px solid #333;">
       <v-toolbar-title class=" font-weight-bold d-sm-inline" href="#">
         <img :src="require('@/assets/img/logo.png')" height="50px" width="50px" style="vertical-align: middle;" />
-        <div class="d-sm-inline" style="font-size: 1.2rem; ">
+        <div class="d-sm-inline" style="font-size: 1.2rem; margin-right: 20px; ">
           ApexPad
         </div>
+        <v-btn text rounded to="/browser">Browser</v-btn>
+        <!-- <v-btn text rounded @click="clickBrowserButton">Browser</v-btn> -->
+        <v-btn text rounded to="/liquidity">Liquidity</v-btn>
+        <v-btn text rounded to="/token">Token</v-btn>
       </v-toolbar-title>
-      <v-btn text rounded to="/browser">Browser</v-btn>
-      <!-- <v-btn text rounded @click="clickBrowserButton">Browser</v-btn> -->
-      <v-btn text rounded to="/liquidity">Liquidity</v-btn>
-      <v-btn text rounded to="/token">Token</v-btn>
-      <v-spacer></v-spacer>
-      <v-btn text rounded @click="openChainSwitcher">
+        <v-spacer></v-spacer>
+        <v-btn text rounded @click="openChainSwitcher">
         <img :src="$settings.CHAINS[requiredNetwork].icon" height="24px" width="24px" class="mr-3 br-20" />
         <v-icon small>mdi-chevron-down</v-icon>
       </v-btn>
@@ -22,7 +23,7 @@
         Wrong network
       </v-btn>
       <!-- <v-btn v-else to="/connect-wallet" outlined  small class="font-weight-bold" rounded depressed> -->
-      <v-btn v-else @click="connectWallet" outlined  small class="font-weight-bold" rounded depressed>
+      <v-btn v-else @click="connectWallet" outlined small class="font-weight-bold border mr-4" rounded depressed >
         <span v-if="!sClient.address">CONNECT</span>
         <span v-else>{{ sClient.address_condensed }}</span>
       </v-btn>
@@ -30,8 +31,78 @@
       <!-- <v-btn @click="toggleTheme">toggle theme</v-btn> -->
     </v-app-bar>
 
-    <ChainSwitcherDialog />
-    <ConnectWalletDialog />
+       <!-- MOBILE TOOLBAR -->
+    <v-app-bar
+      v-else
+      app
+      flat
+      color="midground"
+    >
+
+      <v-toolbar-title class="font-weight-bold">
+        <div class="">
+          ApexPad
+        </div>
+      </v-toolbar-title>
+
+      <v-spacer></v-spacer>
+
+      <v-btn text small rounded @click="$root.$dialog.chainSwitcher.open()">
+        <img 
+        :src="$settings.CHAINS[$store.state.requiredNetwork].icon" 
+        height="24px"
+        width="24px"
+        class="mr-3 br-20">
+        <v-icon small color="">mdi-chevron-down</v-icon>
+      </v-btn>
+
+      <div class="text-center">
+        <v-btn
+        v-if="wrongNetwork"
+        @click="connectWallet"
+        small
+        color="red"
+        :class="['font-weight-bold']"
+        rounded depressed
+        >
+          Wrong network
+          <!--
+            <div class="caption ml-1">
+            Switch your wallet to {{ $store.state.requiredNetwork }}
+          </div>
+          -->
+        </v-btn>
+
+        <v-btn
+        v-else
+        @click="connectWallet"
+        small
+        outlined
+        :color="walletConnected ? 'text' : 'text'"
+        :class="['font-weight-bold']"
+        rounded depressed
+        >
+            <span v-if="!walletConnected">Connect</span>
+            <span v-else>{{ sEthers.coinbase_condensed }}</span>
+        </v-btn>
+      </div>
+
+      <!-- <div class="">
+        <tx-spinner small color="text"></tx-spinner>
+      </div> -->
+
+      <v-btn small icon @click="openMenu" color="text" class="mr-1">
+        <v-icon small>mdi-menu</v-icon>
+      </v-btn>
+
+    </v-app-bar>
+
+    <web-3-error ref="web3Error"></web-3-error>
+    <connect-wallet-dialog ref="connectWalletDialog"></connect-wallet-dialog>
+    <confirm-tx-dialog ref="confirmTxInWallet"></confirm-tx-dialog>
+    <testnet-dialog ref="testnetDialog"></testnet-dialog>
+    <global-success-dialog ref="globalSuccessDialog"></global-success-dialog>
+    <chain-switcher-dialog ref="chainSwitcherDialog"></chain-switcher-dialog>
 
     <!-- <transition> -->
       <router-view v-slot="{ Component, props }">
@@ -42,6 +113,18 @@
       </router-view>
     <!-- </transition> -->
 
+    <!-- DESKTOP FOOTER -->
+    <!-- <div style="background-color:white;justify-content: center;"> -->
+      <v-footer v-if="isDesktop" class="pa-3 justify-center" color="#0a0815" style="background-color: #0a0815; width: 100%;justify-content: center; max-height: 80px; position: absolute; bottom: 0%;">
+         <v-btn icon color="textFaint" x-large href="https://twitter.com/" target="_blank">
+           <v-icon>mdi-twitter</v-icon>
+         </v-btn>
+         <v-btn color="textFaint" x-large icon rounded href="https://t.me/" target="_blank">
+           <v-icon>mdi-telegram</v-icon>
+         </v-btn>
+        </v-footer>
+     <!-- </div> -->
+     <!-- END DESKTOP FOOTER -->
   </v-app>
 </template>
 
@@ -61,6 +144,7 @@ import GlobalSuccessDialog from '@/components/dialogs/global-success-dialog';
 import ChainSwitcherDialog from '@/components/dialogs/chain-switcher-dialog';
 import Utils from '@/web3/utils';
 import ExchangeSwitcher from "@/views/ExchangeSwitcher";
+import footer from '@/components/footer';
 
 
 export default defineComponent( {
@@ -74,7 +158,8 @@ export default defineComponent( {
     TestnetDialog,
     GlobalSuccessDialog,
     ChainSwitcherDialog,
-    ExchangeSwitcher
+    ExchangeSwitcher,
+    footer
   },
   data(){
     return {
@@ -201,7 +286,8 @@ export default defineComponent( {
       toTop,
       themeClass,
       isDesktop,
-      theme
+      theme,
+      footer
     };
   },
 });
