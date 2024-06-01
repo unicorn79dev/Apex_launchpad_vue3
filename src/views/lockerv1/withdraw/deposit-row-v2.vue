@@ -57,7 +57,7 @@
 <script lang="ts" setup>
 import { computed, defineProps } from 'vue'
 import moment from 'moment'
-import Utils from '@/web3/utils'
+import Utils from '@/web3/utils.js'
 
 interface LockItem {
   amount: string

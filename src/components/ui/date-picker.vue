@@ -10,7 +10,8 @@
     offset-y
   > -->
     <template #activator="{ on, attrs }">
-      <v-btn v-bind="attrs" depressed v-on="on">
+      <!-- <v-btn v-bind="attrs" depressed v-on="on"> -->
+      <v-btn v-bind="attrs" depressed @click="on">
         <slot name="header">
           <v-icon :color="color">mdi-calendar</v-icon>
           <v-icon small :color="color">mdi-chevron-down</v-icon>

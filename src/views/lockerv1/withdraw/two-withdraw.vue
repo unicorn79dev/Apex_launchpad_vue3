@@ -1,4 +1,4 @@
-<template>
+<!-- <template>
   <v-dialog v-model="dialog" persistent max-width="450" content-class="br-20">
     <v-card>
       <v-card-text>
@@ -14,7 +14,6 @@
             <div class="pa-1 align-center flex-nowrap inputcolor r-outlined">
               <div class="caption text-end mr-3 pt-2">Withdrawable: {{ withdrawableBalanceHuman }}</div>
               <div class="d-flex align-center">
-                <!-- <c-input :value.sync="amountHuman" placeholder="0.0" @updateWhileFocussed="onHumanAmountChange" class="pa-2 title font-weight-bold"></c-input> -->
                 <c-input v-model:value="amountHuman" placeholder="0.0" @updateWhileFocussed="onHumanAmountChange" class="pa-2 title font-weight-bold"></c-input>
                 <v-btn small outlined rounded @click="setMax" class="mr-2 grad-green white--text">MAX</v-btn>
               </div>
@@ -119,4 +118,33 @@ const withdraw = async () => {
 
 const resolveRef = ref(null)
 const rejectRef = ref(null)
+</script> -->
+
+
+<template>
+  <div>
+    <withdraw-v2 :uniPair="uniPair"></withdraw-v2>
+  </div>
+
+</template>
+
+<script>
+import WithdrawV2 from './withdraw-v2'
+
+export default {
+  components: {
+    WithdrawV2,
+  },
+
+  props: {
+    uniPair: String
+  },
+
+  data: () => ({
+    version: 1
+  }),
+
+  methods: {
+  }
+}
 </script>
