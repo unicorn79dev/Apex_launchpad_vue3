@@ -20,10 +20,13 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { ref, inject } from 'vue';
 
-const dialog = ref(false);
-const errorMessage = ref('');
+// const dialog = ref(false);
+const dialog = inject('web3err');
+const errmsg = inject('errmsg');
+// const errorMessage = ref('');
+const errorMessage = errmsg;
 
 const open = (message) => {
   errorMessage.value = message;

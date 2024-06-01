@@ -27,6 +27,7 @@
         <span v-if="!sClient.address">CONNECT</span>
         <span v-else>{{ sClient.address_condensed }}</span>
       </v-btn>
+      <v-btn @click="confirmTxdialog" outlined small class="font-weight-bold border mr-4" rounded depressed>test</v-btn>
 
       <!-- <v-btn @click="toggleTheme">toggle theme</v-btn> -->
     </v-app-bar>
@@ -94,7 +95,7 @@
       <v-btn small icon @click="openMenu" color="text" class="mr-1">
         <v-icon small>mdi-menu</v-icon>
       </v-btn>
-
+      
     </v-app-bar>
 
     <web-3-error ref="web3Error"></web-3-error>
@@ -169,8 +170,15 @@ export default defineComponent( {
   setup() {
     const count=ref(false)
     const w_bool=ref(false)
+    const confirmTx=ref(false)
+    const web3err=ref(false)
+    const errmsg=ref('')
     provide('message', count)
     provide('wallet', w_bool)
+
+    provide('confirmTx', confirmTx);
+    provide('errmsg', errmsg);
+    provide('web3err', web3err)
 
     const theme = useTheme();
 
@@ -226,6 +234,22 @@ export default defineComponent( {
       // router.push('/connect-wallet');
     };
     provide('connectwallet', connectWallet);
+
+    const confirmTxdialog = () => {
+    console.log('confirmtx')
+      confirmTx.value=true;
+    };
+    provide('confirmTxdialog', confirmTxdialog);
+    const rejectTxdialog = () => {
+      confirmTx.value=false;
+    };
+    provide('rejectTxdialog', rejectTxdialog);
+
+    const web3errDialog = (msg) => {
+      web3err.value=true;
+      errmsg.value=msg;
+    };
+    provide('web3errDialog', web3errDialog);
 
     const openChainSwitcher = () => {
       console.log('test========================>click event test', this)
@@ -301,7 +325,8 @@ export default defineComponent( {
       themeClass,
       isDesktop,
       theme,
-      footer
+      footer,
+      confirmTxdialog
     };
   },
 });

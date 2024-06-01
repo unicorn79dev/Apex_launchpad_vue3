@@ -131,7 +131,7 @@
 </template>
 
 <script setup>
-import { ref, computed, watch, onMounted } from 'vue'
+import { ref, computed, watch, onMounted, inject } from 'vue'
 import { useStore } from 'vuex'
 import moment from 'moment'
 import CDate from '@/components/ui/date-picker'
@@ -256,6 +256,10 @@ const setUnlockDate = date => {
   unlockDate.value = date.unix()
 }
 
+const confirmTxdialog = inject('confirmTxdialog')
+  const rejectTxdialog = inject('rejectTxdialog')
+  const web3errDialog = inject('web3errDialog')
+
 const approve = async () => {
   console.log('===============>approve test')
   const amountToApprove = '340282366920938463463374607431768211455'
@@ -264,7 +268,10 @@ const approve = async () => {
   const CONTRACT_ADDRESS = SETTINGS.CHAINS[reqNetwork.value].lpLocker
   const defaultFee = SETTINGS.CHAINS[reqNetwork.value].defaultFee
 
-  store.root.$dialog.confirmTx.open()
+  // store.root.$dialog.confirmTx.open()
+
+
+  confirmTxdialog()
 
   try {
     const txhash = await sClient.value.signedClient.execute(
@@ -281,10 +288,12 @@ const approve = async () => {
       []
     )
     getAllowance()
-    store.root.$dialog.confirmTx.close()
+    rejectTxdialog
   } catch (err) {
-    store.root.$dialog.confirmTx.close()
-    store.root.$dialog.web3Error.open(err.message)
+    rejectTxdialog()
+    // web3Error.open(err.message)
+    console.log(confirmTxdialog)
+    web3errDialog(err.message)
   }
 
   approvalLoading.value = false

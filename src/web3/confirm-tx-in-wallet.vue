@@ -30,11 +30,15 @@
 </template>
 
 <script>
-import { ref } from 'vue';
+import { ref, inject } from 'vue';
 
 export default {
+  name:'ConfirmTxDialog',
   setup() {
-    const dialog = ref(false);
+    // const dialog = ref(false);
+    const confirmTx = inject('confirmTx');
+    console.log(confirmTx)
+    const dialog = confirmTx
 
     const open = () => {
       dialog.value = true;

@@ -1,6 +1,6 @@
 <template>
   <div style="margin-top: 10px; background-color: #0a0815!important; border:1px solid #333" class="rounded-xl">
-    <v-btn v-if="stage > 0" text @click="previousStage" class="mb-4 pa-0">
+    <v-btn v-if="stage > 0" text @click="previousStage" class="mb-4 ml-4">
       <v-icon>mdi-arrow-left</v-icon>
     </v-btn>
 

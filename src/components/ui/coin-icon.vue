@@ -1,6 +1,6 @@
 <template>
   <img 
-    :src="srcUrl" 
+    :src="require(`${srcUrl}`)" 
     :height="`${size}px`"
     :width="`${size}px`"
     @error="setAltImg"
