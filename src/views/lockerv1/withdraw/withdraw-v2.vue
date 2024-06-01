@@ -7,7 +7,7 @@
     </div>
     <v-scroll-x-transition>
       <div v-if="!loading.value">
-        <div class="display-1 textFaint--text font-weight-bold mb-7">
+        <div class="display-1 textFaint--text font-weight-bold mb-7 ml-8" style="font-size: 38px; color:#aaa">
           Withdraw liquidity
         </div>
         <div class="pa-4 mb-2 text-center">
@@ -27,9 +27,11 @@
             @split="split"
           ></deposit-row>
         </div>
-        <div v-if="locks.value.length === 0">
-          No locks for this account
-        </div>
+        <!-- <div v-if="locks.value.length === 0"> -->
+          <div class="ml-8">
+            No locks for this account
+          </div>
+        <!-- </div> -->
         <withdraw-dialog ref="withdrawDialog"></withdraw-dialog>
         <relock-dialog ref="relockDialog"></relock-dialog>
         <transfer-ownership-dialog ref="transferOwnershipDialog"></transfer-ownership-dialog>
@@ -42,15 +44,17 @@
 </template>
 
 <script setup>
-import { ref, watch, onMounted } from 'vue'
-import DepositRow from './deposit-row-v2'
+import { ref, watch, onMounted, computed } from 'vue'
+// import DepositRow from './deposit-row-v2'
 import WithdrawDialog from './withdraw-v2-dialog'
 import MigrateDialog from './migrate-dialog'
 import IncrementDialog from './increment-dialog'
 import RelockDialog from './relock-dialog'
-import SplitLockDialog from './split-lock-dialog'
+// import SplitLockDialog from './split-lock-dialog'
 import TransferOwnershipDialog from './transfer-ownership-dialog'
 import SETTINGS from '@/store/settings'
+
+import { useStore } from 'vuex'
 
 const props = defineProps({
   uniPair: String,

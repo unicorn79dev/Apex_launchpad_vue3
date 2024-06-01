@@ -28,6 +28,7 @@
         </div>
         <div class="mt-2 d-flex align-center pa-3 r-outlined br-20 inputcolor" style="position: relative;">
           <v-text-field v-model="searchPair" placeholder="pair address..." type="input" class="br-20"></v-text-field>
+          <!-- <c-input v-model="searchPair" placeholder="pair address..." class="br-20"></c-input> -->
         </div>
         <div class="caption text-center textFaint--text" style="font-size: smaller;">
           e.g. inj16ukv8g2jcmml7gykxn5ws8ykhxjkugl4zhft5h

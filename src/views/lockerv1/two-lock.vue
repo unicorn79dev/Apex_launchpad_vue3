@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-icon size="180" style="color: var(--v-background-base)!important; position: absolute; right: -30px; top: -10px;">mdi-lock-outline</v-icon>
+    <v-icon size="180" style="color: #000; position: absolute; right: 50%; margin-right: -300px; margin-top: -80px;">mdi-lock-outline</v-icon>
     <div style="position: relative;">
       <div v-if="firstLoad" class="text-center">
         <v-progress-circular indeterminate size="150" color="textFaint">
@@ -9,46 +9,46 @@
       </div>
       <v-scroll-x-transition>
         <div>
-          <div class="display-1 textFaint--text text-center font-weight-bold mb-8">
+          <div class="display-1 textFaint--text text-center font-weight-bold mb-8" style="font-size: 36px;color:#888">
             Lock Liquidity
           </div>
           <div v-if="false" class="caption">
             {{ feeInfo }}
           </div>
-          <div class="mt-10 mb-2 title font-weight-bold text-center">
+          <div class="mt-8 mb-2 title font-weight-bold text-center" style="font-size: 22px;">
             Lock how many LP tokens?
           </div>
-          <div class="pa-4 align-center flex-nowrap inputcolor r-outlined">
-            <div class="caption text-end pt-2">
+          <div class="pa-4 align-center flex-nowrap inputcolor r-outlined" style="background-color: #223; font-size: small;">
+            <div class="caption text-end">
               Balance: {{ uniBalanceHuman }}
             </div>
             <div class="d-flex align-center">
               <!-- <c-input :value.sync="amountHuman" placeholder="0.0" @updateWhileFocussed="onHumanAmountChange" class="pa-2 font-weight-bold"></c-input> -->
-              <c-input v-model:value="amountHuman" placeholder="0.0" @updateWhileFocussed="onHumanAmountChange" class="pa-2 font-weight-bold"></c-input>
+              <v-text-field v-model="amountHuman" variant="underlined" placeholder="0.0" @updateWhileFocussed="onHumanAmountChange" class="pa-2 font-weight-bold pt-0"></v-text-field>
               <div class="font-weight-bold">LP</div>
-              <v-btn small depressed color="primary" @click="setMax" class="ml-2">
+              <v-btn small depressed color="primary" @click="setMax" class="ml-2" style="z-index: 100;">
                 MAX
               </v-btn>
             </div>
             <div>
-              <v-btn small outlined rounded color="" @click="setPercent(25)" class="mr-1">
+              <v-btn small outlined rounded color="" @click="setPercent(25)" class="mr-1" style="z-index: 100;">
                 25%
               </v-btn>
-              <v-btn small outlined rounded color="" @click="setPercent(50)" class="mr-1">
+              <v-btn small outlined rounded color="" @click="setPercent(50)" class="mr-1" style="z-index: 100;">
                 50%
               </v-btn>
-              <v-btn small outlined rounded color="" @click="setPercent(75)" class="mr-1">
+              <v-btn small outlined rounded color="" @click="setPercent(75)" class="mr-1" style="z-index: 100;">
                 75%
               </v-btn>
-              <v-btn small outlined rounded color="" @click="setMax" class="mr-1">
+              <v-btn small outlined rounded color="" @click="setMax" class="mr-1" style="z-index: 100;">
                 100%
               </v-btn>
             </div>
           </div>
-          <div class="mt-10 mb-2 title font-weight-bold text-center">
+          <div class="mt-8 mb-2 title font-weight-bold text-center" style="font-size: 24px;">
             Unlock Date
           </div>
-          <div class="d-flex align-start inputcolor r-outlined pa-4">
+          <div class="d-flex align-start inputcolor r-outlined pa-4" style="background-color: #223;">
             <div>
               <div class="font-weight-bold">{{ unlockDateHuman }}</div>
               <div class="">{{ unlockDateFromNow }}</div>
@@ -56,7 +56,7 @@
             <v-spacer></v-spacer>
             <c-date @setDate="setUnlockDate"></c-date>
           </div>
-          <div class="mt-10 mb-2 title font-weight-bold text-center">
+          <div class="mt-8 mb-2 title font-weight-bold text-center">
             Who can withdraw the tokens?
           </div>
           <div class="text-center">
@@ -69,59 +69,61 @@
           </div>
           <v-slide-y-transition>
             <div v-if="!unlockerIsMe" class="mt-2 d-flex align-center pa-3 r-outlined br-8 inputcolor">
-              <c-input v-model:value="unlockerAccount" placeholder="Unlocker address"></c-input>
+              <v-text-field v-model="unlockerAccount" placeholder="Unlocker address" type="input"></v-text-field>
             </div>
           </v-slide-y-transition>
-          <template>
-            <div class="mt-10 mb-2 title font-weight-bold text-center">
+          <!-- <template> -->
+            <div class="mt-8 mb-2 title font-weight-bold text-center">
               Fee
             </div>
             <v-item-group v-model:value="optionEthFee" mandatory>
               <v-container>
-                <v-row dense class="justify-center">
+                <v-row dense class="justify-center" 
+                >
                   <v-col cols="6">
                     <v-item v-slot="{ active, toggle }">
-                      <v-card :color="active ? 'primary' : ''" :class="['d-flex align-center']" height="100" @click="toggle">
+                      <v-card :color="active ? '#0000ff' : '#9c81bc'" :class="['d-flex align-center']" height="100" @click="toggle">
                         <div :class="['title flex-grow-1 text-center', {'white--text': active}]">
                           {{ ethFeeHuman }}
                           {{ $store.state.nativeGasTokenSymbol }}
                         </div>
                       </v-card>
                     </v-item>
-                    <div class="caption textFaint--text text-center">
+                    <div class="caption textFaint--text text-center" style="font-size: smaller; margin-top: 8px;">
                       Your balance: {{ ethBalanceHuman }} {{ $store.state.nativeGasTokenSymbol }}
                     </div>
                   </v-col>
                 </v-row>
               </v-container>
             </v-item-group>
-          </template>
-          <div class="mt-8 text-center">
+          <!-- </template> -->
+          <div class="mt-4 text-center">
             Once tokens are locked they cannot be withdrawn under any circumstances until the timer has expired. Please ensure the parameters are correct, as they are final.
           </div>
           <v-row dense class="ma-0 mt-4">
             <v-col cols="6">
-              <v-btn @click="approve" color="primary" x-large block depressed :disabled="!allowanceIncreaseRequired" :loading="approvalLoading">
+              <v-btn @click="approve" color="#eee" x-large block depressed :disabled="!allowanceIncreaseRequired" :loading="approvalLoading">
                 Approve
               </v-btn>
             </v-col>
             <v-col cols="6">
-              <v-btn @click="lockTokens" color="primary" x-large block depressed :disabled="allowanceIncreaseRequired || amount === '0' || !userHasSufficientFlatrateToken" :loading="lockLoading">
+              <v-btn @click="lockTokens" color="#eee" x-large block depressed :disabled="allowanceIncreaseRequired || amount === '0' || !userHasSufficientFlatrateToken" :loading="lockLoading">
                 Lock
               </v-btn>
             </v-col>
           </v-row>
-          <div v-if="!userHasSufficientFlatrateToken" class="d-flex align-center font-weight-medium midground pa-4 br-8 mt-2" style="position: relative; overflow: hidden;">
-            <div class="red" style="position: absolute; left: 0px; top: 0px; bottom: 0px; right: 0px;opacity: 0.2;"></div>
-            <img :src="require('@/assets/img/flags/close.svg')" height="26px" class="mr-2" width="26px">
-            <div>
-              <div class="caption">
-                You do not have enough {{ $store.state.nativeGasTokenSymbol }} in your wallet to perform this transaction.
-                {{ ethFeeHuman }}
-                {{ $store.state.nativeGasTokenSymbol }} required.
+
+            <div v-if="!userHasSufficientFlatrateToken" class="d-flex align-center font-weight-medium midground pa-4 br-8 mt-2 mb-16" style="">
+              <!-- <div class="red" style="position: absolute; left: 0px; top: 0px; bottom: 0px; right: 0px;opacity: 0.2;"></div> -->
+              <img :src="require('@/assets/img/flags/close.svg')" height="26px" class="mr-2" width="26px">
+              <div>
+                <div class="caption" style="position:relative">
+                  You do not have enough {{ $store.state.nativeGasTokenSymbol }} in your wallet to perform this transaction.
+                  {{ ethFeeHuman }}
+                  {{ $store.state.nativeGasTokenSymbol }} required.
+                </div>
               </div>
             </div>
-          </div>
         </div>
       </v-scroll-x-transition>
     </div>
@@ -240,6 +242,7 @@ const onHumanAmountChange = val => {
 }
 
 const setMax = () => {
+  console.log('------------>btn event')
   amount.value = balance.value
   amountHuman.value = Utils.convertMicroDenomToDenom(balance.value, decimals.value)
 }
@@ -254,6 +257,7 @@ const setUnlockDate = date => {
 }
 
 const approve = async () => {
+  console.log('===============>approve test')
   const amountToApprove = '340282366920938463463374607431768211455'
   approvalLoading.value = true
 

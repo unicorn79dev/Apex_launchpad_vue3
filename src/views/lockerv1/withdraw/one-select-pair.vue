@@ -54,7 +54,7 @@
 </template>
 
 <script setup>
-import { ref, computed, watch, inject } from 'vue'
+import { ref, computed, watch, inject, onMounted } from 'vue'
 import { useStore } from 'vuex'
 import UserLockedPairs from '@/views/lockerv1/account/locked-pairs'
 import Utils from '@/web3/utils'
@@ -122,7 +122,7 @@ const emit = defineEmits(['on-continue'])
 
 const uniBalanceHuman = computed(() => 0)
 
-// created(() => {
-//   searchPair.value = ''
-// })
+onMounted(() => {
+  searchPair.value = ''
+})
 </script>

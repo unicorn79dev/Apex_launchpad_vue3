@@ -30,7 +30,8 @@
           Block number
         </div>
         <div class="mt-2 d-flex align-center pa-3 r-outlined br-20 inputcolor">
-          <c-input :model-value="localBlock" @update:model-value="localBlock = $event" placeholder="Token address..."></c-input>
+          <!-- <c-input :model-value="localBlock" @update:model-value="localBlock = $event" placeholder="Token address..."></c-input> -->
+          <v-text-field v-model="localBlock" @update:model-value="localBlock = $event" placeholder="Token address..." type="input"></v-text-field>
         </div>
         <div class="caption text-center textFaint--text">
           Current block: {{ blockNumber }}
