@@ -8,6 +8,7 @@ import CoinIcon from '@/components/ui/coin-icon.vue';
 import CPagination from '@/components/ui/pagination/pagination.vue';
 import CopyAddress from '@/components/ui/copy-address.vue';
 import ENMT from '@/components/ui/enmt.vue';
+import CDate from '@/components/ui/date-picker.vue';
 
 const app = createApp({});
 
@@ -19,5 +20,7 @@ app.component('coin-icon', CoinIcon);
 app.component('c-pagination', CPagination);
 app.component('copy-address', CopyAddress);
 app.component('enmt-badge', ENMT);
+app.component('date-picker', CDate);
+
 
 export default app;

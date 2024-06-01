@@ -182,6 +182,7 @@ export default defineComponent( {
     const scrollFab = ref(false);
     const overlay = ref(true);
     const sClient = computed(() => store.state.signer);
+    provide('signer', sClient);
     const wrongNetwork = computed(() => store.state.wrongNetwork);
     const requiredNetwork = computed(() => store.state.requiredNetwork);
     const isMainnet = computed(() => ['INJ', 'SEI'].includes(store.state.requiredNetwork));

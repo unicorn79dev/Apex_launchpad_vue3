@@ -242,11 +242,14 @@
 </template>
 
 <script>
-import { ref, computed, watch } from 'vue'
+import { ref, computed, watch, inject } from 'vue'
 import CDate from '@/components/ui/date-picker'
 import moment from 'moment'
 import LinearLockChart from '@/views/locker/erc20/charts/linear-lock'
 import Utils from '@/web3/utils'
+import { useStore } from 'vuex'
+
+const store = useStore();
 
 export default {
   props: {
@@ -276,9 +279,11 @@ export default {
   setup(props, { emit }) {
     const expandMenu = ref(false)
     const amountHuman = ref('0')
-    
+    const st_signer = inject('signer');
     const sClient = computed(() => {
-      return this.$store.state.signer
+      // return this.$store.state.signer
+      // console.log(store);
+      return st_signer;
     })
 
     const unlockerAddressCondensed = computed(() => {

@@ -64,8 +64,8 @@
             width="20px"
             class="mr-2 br-20">
             <!-- <c-input :value.sync="tokenAddress" placeholder="Token address..." class=""> -->
-            <c-input v-model:value="tokenAddress" placeholder="Token address..." class="">
-            </c-input>
+            <v-text-field v-model="tokenAddress" placeholder="Token address..." class="">
+            </v-text-field>
 
             <v-progress-circular
             v-if="showSearchLoader"
@@ -125,7 +125,7 @@
             <!-- LOCK TAB -->
             <div v-show="tab == 0">
               <!-- LOCK ARRAY -->
-              <div class="mt-5 v-card br-20">
+              <div class="mt-5 border-sm br-20">
                 <div class="pa-4 border-b">
                   Locks 
                   <span class="textFaint--text">({{ locks.length }})</span>
@@ -164,7 +164,7 @@
                   </div>
                 </div>
 
-                <v-card v-else outlined class="pa-6 br-8 mt-4">
+                <div v-else outlined class="pa-6 border-sm br-8 mt-4">
     
                   <div class="d-flex">
                     Fee: 
@@ -177,14 +177,14 @@
                     <span :class="[{'orange--text': errorInsufficientBalanceForLocks}]">{{ totalDebitAmountHuman }} {{ tokenHydrated.symbol }}</span>
                   </div>
 
-                </v-card>
+                </div>
               </div>
 
-              <div class="my-3 textFaint--text caption font-italic text-center">
+              <div class="my-3 textFaint--text caption font-italic text-center" style="font-size: 12px; color:#bbb">
                 Once tokens are locked they cannot be withdrawn under any circumstances until the timer has expired. Please ensure the parameters are correct, as they are final.
               </div>
 
-              <div v-if="errorTotalLockAmountIsZero" class="text-center orange--text py-2">
+              <div v-if="errorTotalLockAmountIsZero" class="text-center orange--text py-2" style="color:orange">
                 Total Lock amount is Zero
               </div>
 
@@ -207,12 +207,12 @@
 
               <v-row dense class="ma-0 mt-4">
                 <v-col cols="6">
-                  <v-btn @click="approve" color="primary" x-large block depressed :disabled="!allowanceIncreaseRequired" :loading="approvalLoading">
+                  <v-btn @click="approve" color="#9c81bc" size="x-large" block depressed :disabled="!allowanceIncreaseRequired" :loading="approvalLoading">
                     Approve
                   </v-btn>
                 </v-col>
                 <v-col cols="6">
-                  <v-btn @click="lockTokens" color="primary" x-large block depressed :disabled="allowanceIncreaseRequired" :loading="lockLoading">
+                  <v-btn @click="lockTokens" color="#9c81bc" size="x-large" block depressed :disabled="allowanceIncreaseRequired" :loading="lockLoading">
                     Lock
                   </v-btn>
                 </v-col>
@@ -222,6 +222,7 @@
             <div v-show="tokenHydrated.address && sClient.address && tab === 1" :class="[{'v-card br-20 mt-4': isXs}, {'v-card br-20 mt-4': !isXs}]">
               <global-token :tokenHydrated="tokenHydrated" :isForUser="true"></global-token>
             </div>
+            <div style="margin-bottom: 80px;"></div>
 
           </div>
 
