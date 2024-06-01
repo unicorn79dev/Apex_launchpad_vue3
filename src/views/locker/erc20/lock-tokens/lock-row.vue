@@ -104,8 +104,9 @@
                   *Allow someone else to withdraw these tokens after the lock date.
                 </div>
                 <div class="mt-2 d-flex align-center pa-3 r-outlined br-8 inputcolor">
-                  <c-input v-model:value="lock.owner" placeholder="Unlocker address">
-                  </c-input>
+                  <!-- <c-input v-model:value="lock.owner" placeholder="Unlocker address"> -->
+                  <v-text-field v-model="lock.owner" placeholder="Unlocker address">
+                  </v-text-field >
                 </div>
                 <div v-if="ownerIsValid" class="justify-center caption primary--text d-flex align-center">
                   Valid address
@@ -195,7 +196,7 @@
               <div class="mt-8 text-center textFaint--text caption">
                 Start date
               </div>
-              <div class="mt-2 d-flex align-start inputcolor r-outlined pa-4">
+              <div class="mt-2 d-flex align-start inputcolor r-outlined pa-4" style="background-color: #555;">
                 <div>
                   <div class="font-weight-bold">
                     {{ startDateHuman }}
@@ -210,7 +211,7 @@
               <div class="mt-8 text-center textFaint--text caption">
                 End date
               </div>
-              <div class="mt-2 d-flex align-start inputcolor r-outlined pa-4">
+              <div class="mt-2 d-flex align-start inputcolor r-outlined pa-4" style="background-color: #555;">
                 <div>
                   <div class="font-weight-bold">
                     {{ endDateHuman }}
@@ -248,6 +249,7 @@ import moment from 'moment'
 import LinearLockChart from '@/views/locker/erc20/charts/linear-lock'
 import Utils from '@/web3/utils'
 import { useStore } from 'vuex'
+import CInput from '@/components/ui/input'
 
 const store = useStore();
 
@@ -363,6 +365,7 @@ export default {
     }
 
     const setPercent = (percent) => {
+      console.log('=========>setPercent')
       props.lock.amount = props.balance * percent / 100
       amountHuman.value = Utils.convertMicroDenomToDenom(props.lock.amount, props.tokenHydrated.decimals)
     }

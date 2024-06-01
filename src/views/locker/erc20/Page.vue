@@ -244,6 +244,8 @@ import { ref, computed, watch, inject, provide } from 'vue';
 import { useDisplay } from 'vuetify';
 import store from '@/store';
 import { useRouter } from 'vue-router';
+
+import coinIcon from '@/components/ui/coin-icon.vue';
 const root = inject('app');
 
 const chainSwitcher = inject('chainswitcher');
