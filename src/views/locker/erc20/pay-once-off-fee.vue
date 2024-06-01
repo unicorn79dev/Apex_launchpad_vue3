@@ -56,7 +56,7 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, computed, watch, onMounted } from 'vue'
+import { ref, computed, watch, onMounted, inject } from 'vue'
 import { ethers } from 'ethers'
 import { useStore } from 'vuex'
 import { ERC20, TxWrapper, VestingContract, VestingABI } from '@/smart-contracts'
@@ -91,6 +91,10 @@ const feeBalanceHuman = computed(() => {
 const allowanceIncreaseRequired = computed(() => ethers.BigNumber.from(props.fees.free_locking_fee).gt(allowance.value))
 const eInsufficientBalanceForFee = computed(() => ethers.BigNumber.from(balance.value).lt(props.fees.free_locking_fee))
 
+const confirmTxdialog = inject('confirmTxdialog')
+const rejectTxdialog = inject('rejectTxdialog')
+const web3errDialog = inject('web3errDialog')
+
 const payFee = async () => {
   payFeeLoading.value = true
   const msgValue = feeInGasToken.value ? props.fees.free_locking_fee : '0'
@@ -99,7 +103,7 @@ const payFee = async () => {
     await getAllowance()
     await getFeeTokenBalance()
   } catch (e) {
-    store.root.$dialog.web3Error.open(e.message)
+    web3errDialog(e.message)
   } finally {
     payFeeLoading.value = false
   }
@@ -111,7 +115,7 @@ const approve = async () => {
     await TxWrapper.doTransaction(ERC20.setAllowance(props.fees.free_locking_token, props.fees.free_locking_fee, VestingABI.vesting_address()))
     await getAllowance()
   } catch (e) {
-    store.root.$dialog.web3Error.open(e.message)
+    web3errDialog(e.message)
   } finally {
     approvalLoading.value = false
   }

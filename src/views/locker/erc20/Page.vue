@@ -362,7 +362,7 @@ const lockTokens = async () => {
     gas: "500000",
   };
 
-  root.$dialog.confirmTx.open();
+  confirmTxdialog()
 
   try {
     const txhash = await sClient.value.signedClient.execute(
@@ -384,17 +384,22 @@ const lockTokens = async () => {
       ]
     );
 
-    root.$dialog.confirmTx.close();
+    rejectTxdialog();
 
     console.log("lock txhash: ", txhash);
   } catch (err) {
     console.log(err);
-    root.$dialog.confirmTx.close();
-    root.$dialog.web3Error.open(err.message);
+    rejectTxdialog();
+    web3errDialog(err.message);
   }
 
   lockLoading.value = false;
 };
+
+const confirmTxdialog = inject('confirmTxdialog')
+const rejectTxdialog = inject('rejectTxdialog')
+const web3errDialog = inject('web3errDialog')
+
 const approve = async () => {
   const amount = '340282366920938463463374607431768211455';
   approvalLoading.value = true;
@@ -402,7 +407,7 @@ const approve = async () => {
   const CONTRACT_ADDRESS = SETTINGS.CHAINS[reqNetwork.value].tokenLocker;
   const defaultFee = SETTINGS.CHAINS[reqNetwork.value].defaultFee;
 
-  root.$dialog.confirmTx.open();
+  confirmTxdialog()
 
   try {
     const txhash = await sClient.value.signedClient.execute(
@@ -421,11 +426,11 @@ const approve = async () => {
 
     console.log("txhash", txhash);
     getAllowance();
-    root.$dialog.confirmTx.close();
+    rejectTxdialog();
   } catch (err) {
     console.log(err);
-    root.$dialog.confirmTx.close();
-    root.$dialog.web3Error.open(err.message);
+    rejectTxdialog();
+    web3errDialog(err.message);
   }
 
   approvalLoading.value = false;

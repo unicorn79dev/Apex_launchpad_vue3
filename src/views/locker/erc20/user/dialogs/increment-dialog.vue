@@ -65,7 +65,7 @@
 </template>
 
 <script>
-import { ref, computed, onMounted } from 'vue';
+import { ref, computed, onMounted, inject } from 'vue';
 import { useStore } from 'vuex';
 import CInput from '@/components/ui/input';
 import SETTINGS from '@/store/settings';
@@ -160,6 +160,10 @@ export default {
       amount.value = Utils.convertDenomToMicroDenom(val, tokenHydrated.value.decimals);
     };
 
+    const confirmTxdialog = inject('confirmTxdialog')
+const rejectTxdialog = inject('rejectTxdialog')
+const web3errDialog = inject('web3errDialog')
+
     const approve = async () => {
       const amount = '340282366920938463463374607431768211455';
       approvalLoading.value = true;
@@ -167,7 +171,7 @@ export default {
       const CONTRACT_ADDRESS = SETTINGS.CHAINS[reqNetwork.value].tokenLocker;
       const defaultFee = SETTINGS.CHAINS[reqNetwork.value].defaultFee;
 
-      store.root.$dialog.confirmTx.open();
+      confirmTxdialog();
 
       try {
         const txhash = await sClient.value.signedClient.execute(
@@ -185,10 +189,10 @@ export default {
         );
 
         getAllowance();
-        store.root.$dialog.confirmTx.close();
+        rejectTxdialog();
       } catch (err) {
-        store.root.$dialog.confirmTx.close();
-        store.root.$dialog.web3Error.open(err.message);
+        rejectTxdialog();
+        web3errDialog(err.message);
       }
 
       approvalLoading.value = false;
@@ -204,7 +208,7 @@ export default {
         gas: "500000",
       };
 
-      store.root.$dialog.confirmTx.open();
+      confirmTxdialog();
 
       try {
         const txhash = await sClient.value.signedClient.execute(
@@ -226,11 +230,11 @@ export default {
           ]
         );
 
-        store.root.$dialog.confirmTx.close();
+        rejectTxdialog();
         dialog.value = false;
       } catch (err) {
-        store.root.$dialog.confirmTx.close();
-        store.root.$dialog.web3Error.open(err.message);
+        rejectTxdialog();
+        web3errDialog(err.message);
       }
 
       withdrawLoading.value = false;

@@ -268,7 +268,7 @@ const approve = async () => {
   const CONTRACT_ADDRESS = SETTINGS.CHAINS[reqNetwork.value].lpLocker
   const defaultFee = SETTINGS.CHAINS[reqNetwork.value].defaultFee
 
-  // store.root.$dialog.confirmTx.open()
+  // confirmTxdialog()
 
 
   confirmTxdialog()
@@ -318,7 +318,7 @@ const lockTokens = async () => {
   const CONTRACT_ADDRESS = SETTINGS.CHAINS[reqNetwork.value].lpLocker
   const defaultFee = { amount: [], gas: "500000" }
 
-  store.root.$dialog.confirmTx.open()
+  confirmTxdialog()
 
   try {
     const txhash = await sClient.value.signedClient.execute(
@@ -342,11 +342,11 @@ const lockTokens = async () => {
       ]
     )
 
-    store.root.$dialog.confirmTx.close()
+    rejectTxdialog()
     store.emit('on-lock', amountToLock)
   } catch (err) {
-    store.root.$dialog.confirmTx.close()
-    store.root.$dialog.web3Error.open(err.message)
+    rejectTxdialog()
+    web3errDialog(err.message)
   }
 
   lockLoading.value = false

@@ -53,7 +53,7 @@
 </template>
 
 <script setup>
-import { ref, computed, watch, onMounted } from 'vue'
+import { ref, computed, watch, onMounted, inject } from 'vue'
 import { useStore } from 'vuex'
 import CInput from '@/components/ui/input'
 import SETTINGS from '@/store/settings'
@@ -130,7 +130,9 @@ const getAllowance = async () => {
 const onHumanAmountChange = (val) => {
   amount.value = Utils.convertDenomToMicroDenom(val, decimals.value)
 }
-
+const confirmTxdialog = inject('confirmTxdialog')
+const rejectTxdialog = inject('rejectTxdialog')
+const web3errDialog = inject('web3errDialog')
 const approve = async () => {
   const amount = '340282366920938463463374607431768211455'
   approvalLoading.value = true
@@ -138,7 +140,7 @@ const approve = async () => {
   const CONTRACT_ADDRESS = SETTINGS.CHAINS[reqNetwork.value].lpLocker
   const defaultFee = SETTINGS.CHAINS[reqNetwork.value].defaultFee
 
-  store.state.dialog.confirmTx.open()
+  confirmTxdialog()
 
   try {
     const txhash = await sClient.value.signedClient.execute(
@@ -157,11 +159,11 @@ const approve = async () => {
 
     console.log("txhash", txhash)
     getAllowance()
-    store.state.dialog.confirmTx.close()
+    rejectTxdialog()
   } catch (err) {
     console.log(err)
-    store.state.dialog.confirmTx.close()
-    store.state.dialog.web3Error.open(err.message)
+    rejectTxdialog()
+    web3errDialog(err.message)
   }
 
   approvalLoading.value = false
@@ -174,7 +176,7 @@ const incrementLock = async () => {
   const CONTRACT_ADDRESS = SETTINGS.CHAINS[reqNetwork.value].lpLocker
   const defaultFee = SETTINGS.CHAINS[reqNetwork.value].defaultFee
 
-  store.state.dialog.confirmTx.open()
+  confirmTxdialog()
 
   console.log(sClient.value.signedClient)
   
@@ -195,14 +197,14 @@ const incrementLock = async () => {
       []
     )
 
-    store.state.dialog.confirmTx.close()
+    rejectTxdialog()
     resolve.value()
     dialog.value = false
     console.log("lock txhash: ", txhash)
   } catch (err) {
     console.log(err)
-    store.state.dialog.confirmTx.close()
-    store.state.dialog.web3Error.open(err.message)
+    rejectTxdialog()
+    web3errDialog(err.message)
   }
 
   withdrawLoading.value = false
