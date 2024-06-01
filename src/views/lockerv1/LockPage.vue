@@ -1,5 +1,5 @@
 <template>
-  <v-container :class="['br-20', isXs ? 'pa-4' : 'pa-8']" style="height: 350px; background-color: #0a0815!important;" class="border-lg rounded-xl">
+  <v-container :class="['br-20', isXs ? 'pa-4' : 'pa-8']" style=" background-color: #0a0815!important;border:1px solid #335;" class="rounded-xl mt-2">
 
     <v-btn v-if="stage > 0" text @click="previousStage" class="mb-4 pa-0">
       <v-icon>mdi-arrow-left</v-icon>

@@ -9,7 +9,7 @@
     @click="goToTokenPage"
     style="position: relative;"
   >
-    <v-icon size="60" class="watermark" style="position: absolute; left: 260px; top: 100px;">mdi-lock-outline</v-icon>
+    <v-icon size="60" class="watermark" style="position: absolute; left: 50%; margin-left: -20px; margin-top: 100px;">mdi-lock-outline</v-icon>
     
     <div style="position: relative;">
       <div style="word-break: break-word;">

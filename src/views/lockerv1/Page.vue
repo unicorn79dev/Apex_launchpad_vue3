@@ -1,5 +1,5 @@
 <template>
-  <v-container style="max-width: 670px; background-color: #06040c!important; opacity: 0.8;" class=" pt-16 mt-16" >
+  <v-container style="max-width: 600px;padding: 10px;" class="pt-16 mt-8">
     <v-card v-if="$store.state.exchange === 'Uniswap'" class="pa-4 br-20 mb-2" >
       <div class="caption font-weight-medium">
         We now offer Yield Farming services to virtually any ERC20 token on our all-inclusive yield farming dApp.
@@ -13,12 +13,12 @@
       </div>
     </v-card>
 
-    <div class="border rounded-lg border-info border-md">
-      <v-btn width="317px" height="50px"  text :style="tab === 0 ? 'border-bottom: 2px solid #333355' : ''" @click="tab = 0" >
+    <div class=" br-12" style="background-color: #001; opacity: 0.8;border:1px solid #338;">
+      <v-btn height="50px"  text :style="tab === 0 ? 'color:#aca1fc; font-size:16px' : ''"  @click="tab = 0" class="rounded-s-xl">
         <v-icon size="20" class="mr-1">mdi-checkbox-multiple-blank-circle-outline</v-icon>
         <span>New Lock</span>
       </v-btn>
-      <v-btn width="317px" height="50px" text :style="tab === 1 ? 'border-bottom: 2px solid #333355' : ''" @click="tab = 1">
+      <v-btn height="50px"   text :style="tab === 1 ? 'color:#aca1fc; font-size:16px' : ''"@click="tab = 1">
         <v-icon size="20" class="mr-1">mdi-checkbox-blank-circle-outline</v-icon>
         <span>Edit / Withdraw</span>
       </v-btn>

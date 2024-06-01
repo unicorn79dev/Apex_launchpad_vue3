@@ -43,3 +43,29 @@ const vuetify = createVuetify({
 	
 
 export default vuetify;
+
+
+// import Vue from 'vue'
+// import { createVuetify } from 'vuetify'
+// // import Vuetify from 'vuetify'
+// import 'vuetify/dist/vuetify.min.css'
+// import themes from '@/plugins/themes.js'
+// import * as components from 'vuetify/components';
+// import * as directives from 'vuetify/directives';
+// // Vue.use(Vuetify)
+
+// // export default new Vuetify({
+// const Vuetify = createVuetify({
+//   theme: {
+//     options: {
+//       customProperties: true
+//     },
+//     themes: {
+//       light: themes.theme2.light
+//     }
+//   },
+//   components,
+// 	directives,
+// })
+
+// export default Vuetify;

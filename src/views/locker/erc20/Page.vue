@@ -1,7 +1,7 @@
 <template>
-  <v-container style="max-width: 600px; " :class="[{'pa-0 foreground mobile-page': isXs}, 'pt-16 mt-16']">
+  <v-container style="max-width: 600px; " :class="[{'pa-0 foreground mobile-page': isXs}, 'pt-16 mt-8']">
     <v-slide-x-transition appear>
-      <div class="border-lg rounded-xl px-6 py-6" style="background-color: #0a0815;">
+      <div class="rounded-xl px-6 py-6" style="background-color: #0a0815;border:1px solid #5a5865;">
         
         <div class="text-center">
           <img 
@@ -24,7 +24,7 @@
           This means lock amounts may change due to decimal rounding, but you will always retain your share of the pool.
         </div>
 
-        <div class="text-caption font-italic orange--text mb-4" style="color: orange;">
+        <div class="text-caption font-italic orange--text mb-4" style="color: #ff9800;">
           Do not lock Liquidity tokens here, they will <strong>not</strong> be shown in the Apexpad browser.
         </div>
 
@@ -33,7 +33,7 @@
             Selected network
           </div>
           <!-- <v-btn large block outlined @click="$root.$dialog.chainSwitcher.open()" class="title"> -->
-          <v-btn large block outlined @click="openChainSwitcher" class="title border">
+          <v-btn large block outlined @click="openChainSwitcher" class="title border" style="font-size: larger;">
             <img 
             :src="$settings.CHAINS[$store.state.requiredNetwork].icon" 
             height="24px"
@@ -45,7 +45,7 @@
         </div>
 
         <v-btn v-if="!sClient.address" @click="connectWallet" 
-        large block outlined class="title border">
+        large block outlined class="title border"  style="font-size: larger;">
           <v-icon class="mr-3">mdi-wallet</v-icon>
           Connect your wallet
         </v-btn>
@@ -273,11 +273,12 @@ const fees = ref({
 });
 const tokenOnFeeWhitelist = ref(false);
 const chargeFeeSeperately = ref(true);
-
+const fa = inject('formatAmount');
 const sClient = computed(() => store.state.signer);
 const reqNetwork = computed(() => store.state.requiredNetwork);
 const tokenBalanceHuman = computed(() => {
-  return root.formatAmount(balance.value, tokenHydrated.value.decimals);
+  // return root.formatAmount(balance.value, tokenHydrated.value.decimals);
+  return fa(balance.value, tokenHydrated.value.decimals);
 });
 const allowanceIncreaseRequired = computed(() => {
   return Number(totalLockAmount.value) > Number(allowance.value);

@@ -1,9 +1,9 @@
 <template>
-  <div>
-    <v-icon size="160" style="color: #000000!important; position: absolute; right: 50%; margin-right: -300px;">mdi-arrow-up-circle-outline</v-icon>
+  <div style="position: relative;">
+    <v-icon size="180" style="color: #000000!important; position: absolute; right: 50%; margin-right: -300px; margin-top: -40px;">mdi-arrow-up-circle-outline</v-icon>
 
     <div style="position: relative;" class="mx-5">
-      <div class="display-1 textFaint--text font-weight-bold mb-8 mt-5" style="font-size: 36px;">
+      <div class="display-1 font-weight-bold mb-5 mt-8 ml-3" style="font-size: 33px; color: #ccc;">
         Edit / Withdraw
       </div>
 
@@ -20,17 +20,17 @@
         </v-btn>
       </div>
 
-      <template v-else>
+      <div v-else style="position:relative">
         <div class="mt-8">
           Enter the pair address you would like to access
         </div>
 
         <div class="mt-2 d-flex align-center pa-3 r-outlined br-20 inputcolor">
           <!-- <c-input :value.sync="searchPair" :placeholder="`pair address...`" class="heading--text"></c-input> -->
-          <c-input v-model:value="searchPair" :placeholder="`pair address...`" class="heading--text"></c-input>
+          <v-text-field  v-model="searchPair" :placeholder="`pair address...`" type="input" class="heading--text"></v-text-field >
         </div>
 
-        <div class="caption textFaint--text">
+        <div class="caption textFaint--text" style="font-size: smaller;">
           e.g. inj70bb2736e218861dca818d1e9f7a1930fe61e5b
         </div>
 
@@ -48,7 +48,7 @@
         </div>
 
         <user-locked-pairs @on-select="onSelectLockedPair" :key="sClient.address" class="mt-8"></user-locked-pairs>
-      </template>
+      </div>
     </div>
   </div>
 </template>

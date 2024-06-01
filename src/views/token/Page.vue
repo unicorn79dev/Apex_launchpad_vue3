@@ -1,7 +1,7 @@
 <template>
-  <v-container style="max-width: 600px; overflow: hidden;" :class="{ 'pa-0': breakpoint.xs }">
-    <div :class="[ 'mb-16', { '': breakpoint.xs }, { '': !breakpoint.xs } ]">
-      <div v-if="firstLoad" class="text-center">
+  <v-container style="max-width: 600px; padding: 10px; padding-top: 10px;"  :class="{ 'pa-0 foreground': isXs }">
+    <div :class="[ 'mb-16', { '': breakpoint.xs }, { '': !breakpoint.xs } ]" >
+      <div v-if="firstLoad" class="text-center" >
         <v-progress-circular indeterminate size="80" width="2" color="#aaa">
           <img :src="require('@/assets/img/APEX.png')" height="50px" class="greyscale" width="50px" />
         </v-progress-circular>
@@ -9,8 +9,8 @@
 
       <v-scroll-x-transition mode="out-in">
         <div v-if="!firstLoad">
-          <div :class="[ { 'v-card br-20 ma-2': breakpoint.xs }, { 'v-card br-20': !breakpoint.xs } ]">
-            <div class="text-center">
+          <div>
+            <div class="text-center" style="background-color: #002;opacity: 0.8;border:1px solid #4a4865;border-radius: 10px;">
               <div class="d-flex align-center border-b pa-3">
                 <v-btn icon :to="`/browser/tokens`" color="textFaint">
                   <v-icon>mdi-arrow-left</v-icon>
@@ -32,7 +32,7 @@
             </div>
           </div>
 
-          <div class="d-flex align-center pt-6 pr-4">
+          <div class="d-flex align-center pt-6 pr-4 pb-6" >
             <v-spacer></v-spacer>
             <v-btn rounded small color="primary" :to="`/token?token=${tokenHydrated.address}`" class="green-button">
               Lock tokens
@@ -40,7 +40,7 @@
             </v-btn>
           </div>
 
-          <div :class="[ { 'v-card br-20 ma-2': breakpoint.xs }, { 'mt-2 v-card br-20': !breakpoint.xs } ]">
+          <div style="background-color: #002;opacity: 0.8;border:1px solid #4a4865;border-radius: 10px;">
             <global-token :tokenHydrated="tokenHydrated" :isForUser="false"></global-token>
           </div>
         </div>

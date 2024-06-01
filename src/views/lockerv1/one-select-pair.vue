@@ -1,8 +1,8 @@
 <template>
-  <div class="px-5 py-5">
-    <v-icon size="120" style="color: #000000!important; position: absolute; right: 50%; margin-right: -300px;">mdi-lock-outline</v-icon>
+  <div class="px-2 py-5">
+    <v-icon size="120" style="color: #000000!important; position: absolute; right: 50%; margin-right: -250px; margin-top: -40px;">mdi-lock-outline</v-icon>
     <div style="position: relative;">
-      <div class="d-flex align-center title font-weight-bold mb-4">
+      <div class="d-flex align-center title font-weight-bold mb-4" style="font-size: 20px;">
         New Lock
       </div>
       <div class="mb-2">
@@ -16,20 +16,20 @@
         </ul>
       </div>
       <div v-if="!sClient.address" class="mt-6 text-center">
-        <v-btn @click="connectWallet" outlined color="primary" :class="['font-weight-bold mb-4']" rounded depressed>
+        <v-btn @click="connectWallet" color="text" class="border" :class="['font-weight-bold mb-4']" rounded depressed>
         <!-- <v-btn to="/connect-wallet" outlined color="primary" :class="['font-weight-bold mb-4']" rounded depressed> -->
-          <span v-if="!sClient.address">Connect Wallet</span>
+          <span v-if="!sClient.address" style="color:#ee55ee;">Connect Wallet</span>
           <span v-else>Account: {{ sClient.address_condensed }}</span>
         </v-btn>
       </div>
-      <template v-else>
+      <template v-else class="position-relative">
         <div class="mt-8">
           Enter the pair address you would like to lock liquidity for
         </div>
-        <div class="mt-2 d-flex align-center pa-3 r-outlined br-20 inputcolor">
-          <c-input v-model:value="searchPair" placeholder="pair address..."></c-input>
+        <div class="mt-2 d-flex align-center pa-3 r-outlined br-20 inputcolor" style="position: relative;">
+          <v-text-field v-model="searchPair" placeholder="pair address..." type="input" class="br-20"></v-text-field>
         </div>
-        <div class="caption text-center textFaint--text">
+        <div class="caption text-center textFaint--text" style="font-size: smaller;">
           e.g. inj16ukv8g2jcmml7gykxn5ws8ykhxjkugl4zhft5h
         </div>
         <div v-if="loadingPair" class="mt-4 mb-4 text-center">

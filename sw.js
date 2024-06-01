@@ -1,10 +1,20 @@
-self.addEventListener('install', () => self.skipWaiting());
+import { precacheAndRoute } from 'workbox-precaching';
 
-self.addEventListener('activate', () => {
-  self.registration.unregister();
-  self.clients.matchAll({ type: 'window' }).then(clients => {
-    for (const client of clients) {
-      client.navigate(client.url);
-    }
-  });
+// Define the list of URLs to precache
+const urlsToCache = [
+  // Add URLs to precache here
+  '/index.html',
+  '/styles.css',
+  // Add more URLs as needed
+];
+
+self.__WB_MANIFEST = urlsToCache;
+precacheAndRoute(urlsToCache);
+
+self.addEventListener('install', (event) => {
+  self.skipWaiting();
+});
+
+self.addEventListener('activate', (event) => {
+  event.waitUntil(clients.claim());
 });
