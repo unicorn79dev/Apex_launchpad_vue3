@@ -6,14 +6,14 @@
         content-class="br-20"
         transition="fade-transition"
       >
-        <template #activator="{ attrs, on }">
+        <!-- <template #activator="{ attrs, on }"> -->
+        <template v-slot:activator="{ props }">
           <v-btn
-            v-bind="attrs"
+            v-bind="props"
             small
             text
             rounded :color="color"
             class="pa-0 pl-1 pr-1"
-            v-on="on"
           >
             {{ tokenAddressCondensed }}
             <v-icon x-small class="ml-2">mdi-content-copy</v-icon>
