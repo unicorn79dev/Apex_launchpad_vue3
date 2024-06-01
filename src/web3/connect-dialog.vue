@@ -1,5 +1,5 @@
 <template>
-  <v-dialog v-model="dialog" persistent max-width="450" content-class="br-20">
+  <v-dialog v-model="dialog" persistent max-width="450" content-class="br-20" opacity="0.05">
     <v-card class="br-20" style="background-color: #11111f; border:1px solid #777;">
       <div>
         <v-row class="pa-4 ma-0 font-weight-medium background align-center" style="background-color: #111111;">
