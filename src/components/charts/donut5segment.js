@@ -25,7 +25,6 @@ export default {
 			this.renderChart(this.chartdata, this.options);
 		},
 	},
-
 	mounted() {
 		var grad1 = this.$refs.canvas
 			.getContext('2d')
