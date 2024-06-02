@@ -67,7 +67,7 @@ export default {
     
     const reject = ref(null);
     const dateData = ref(null);
-    const timeData = ref('');
+    const timeData = ref('12:00');
     const tab = ref(0);
     const menu = ref(false);
 
