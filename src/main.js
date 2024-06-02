@@ -12,6 +12,8 @@ import 'roboto-fontface/css/roboto/roboto-fontface.css';
 import '@mdi/font/css/materialdesignicons.css';
 import '@/assets/css/main.scss';
 import './registerServiceWorker';
+import VueTimepicker from 'vue3-timepicker';
+import 'vue3-timepicker/dist/VueTimepicker.css';
 
 import { Buffer } from 'buffer';
 
@@ -33,5 +35,6 @@ app.use(VueClipboard);
 console.log('main------6');
 app.config.globalProperties.$settings = SETTINGS;
 console.log('main------7');
+app.use(VueTimepicker);
 
 app.mount('#app');
