@@ -27,7 +27,7 @@
         <span v-if="!sClient.address">CONNECT</span>
         <span v-else>{{ sClient.address_condensed }}</span>
       </v-btn>
-      <v-btn @click="confirmTxdialog" outlined small class="font-weight-bold border mr-4" rounded depressed>test</v-btn>
+      <!-- <v-btn @click="confirmTxdialog" outlined small class="font-weight-bold border mr-4" rounded depressed>test</v-btn> -->
 
       <!-- <v-btn @click="toggleTheme">toggle theme</v-btn> -->
     </v-app-bar>

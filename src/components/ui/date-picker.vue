@@ -29,7 +29,7 @@
           </v-tabs-window-item>
 
           <v-tabs-window-item value="timeTab">
-            <v-time-picker v-model="timeData"></v-time-picker>
+            <v-time-picker v-model="timeData" format="24hr"></v-time-picker>
           </v-tabs-window-item>
         </v-tabs-window>
 
@@ -75,7 +75,7 @@ export default {
     const timeTyped = computed(() => timeData.value);
     const combinedDate = computed(() => `${dateTyped.value} ${timeTyped.value}`);
     // const combinedDate = computed(() => `${dateData.value} ${timeData.value}`);
-    const momentDate = computed(() => moment(combinedDate).format('YYYY-MM-DD HH:mm'));
+    const momentDate = computed(() => moment(combinedDate.value,'YYYY-MM-DD HH:mm'));
     const dateValid = computed(() => combinedDate);
     const formattedDate = computed(() => momentDate.value.format('ddd, MMM D, HH:mm'));
     // console.log('emit', combinedDate)
@@ -98,8 +98,8 @@ export default {
     };
 
     const setDate = () => {
-      console.log(moment(combinedDate))
-      emit('setDate', moment(combinedDate));
+      console.log(momentDate.value)
+      emit('setDate', moment(momentDate.value));
       menu.value=false;
     };
 

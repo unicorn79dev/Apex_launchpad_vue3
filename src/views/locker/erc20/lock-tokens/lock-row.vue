@@ -90,10 +90,10 @@
             </div>
 
             <div class="text-center">
-              <v-btn rounded depressed :color="unlockerIsMe ? 'primary--text' : 'textFaint--text'" @click="unlockerIsMe = true">
+              <v-btn rounded depressed :style="unlockerIsMe ? 'color:#8700f5' : 'textFaint--text'" @click="unlockerIsMe = true">
                 Me
               </v-btn>
-              <v-btn rounded depressed :color="!unlockerIsMe ? 'primary--text' : 'textFaint--text'" @click="unlockerIsMe = false">
+              <v-btn rounded depressed :style="!unlockerIsMe ? 'color:#8700f5' : 'textFaint--text'" @click="unlockerIsMe = false">
                 Someone else
               </v-btn>
             </div>
@@ -105,7 +105,7 @@
                 </div>
                 <div class="mt-2 d-flex align-center pa-3 r-outlined br-8 inputcolor">
                   <!-- <c-input v-model:value="lock.owner" placeholder="Unlocker address"> -->
-                  <v-text-field v-model="lock.owner" placeholder="Unlocker address">
+                  <v-text-field v-model="lock.owner" placeholder="Unlocker address" variant="solo" rounded="pill">
                   </v-text-field >
                 </div>
                 <div v-if="ownerIsValid" class="justify-center caption primary--text d-flex align-center">
@@ -130,7 +130,7 @@
               </div>
 
               <div class="d-flex align-center">
-                <c-input v-model:value="amountHuman" placeholder="0.0" @updateWhileFocussed="onHumanAmountChange" class="pa-2 font-weight-bold">
+                <c-input v-model="amountHuman" placeholder="0.0" @updateWhileFocussed="onHumanAmountChange" class="pa-2 font-weight-bold">
                 </c-input>
 
                 <div class="font-weight-bold">
@@ -165,10 +165,10 @@
             </div>
 
             <div class="text-center mt-10">
-              <v-btn rounded depressed :class="lockType1 ? 'primary--text' : 'textFaint--text'" @click="lockType1 = true">
+              <v-btn rounded depressed :style="lockType1 ? 'color:blue' : 'textFaint--text'" @click="lockType1 = true">
                 Unlock on date
               </v-btn>
-              <v-btn rounded depressed :color="!lockType1 ? 'blue--text' : 'textFaint--text'" @click="lockType1 = false">
+              <v-btn rounded depressed :style="!lockType1 ? 'color:blue' : 'textFaint--text'" @click="lockType1 = false">
                 Unlock over time
               </v-btn>
             </div>
@@ -275,7 +275,8 @@ export default {
 
   components: {
     CDate,
-    LinearLockChart
+    LinearLockChart,
+    CInput
   },
 
   setup(props, { emit }) {

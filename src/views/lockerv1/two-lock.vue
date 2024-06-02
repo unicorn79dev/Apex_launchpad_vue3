@@ -24,7 +24,7 @@
             </div>
             <div class="d-flex align-center">
               <!-- <c-input :value.sync="amountHuman" placeholder="0.0" @updateWhileFocussed="onHumanAmountChange" class="pa-2 font-weight-bold"></c-input> -->
-              <v-text-field v-model="amountHuman" variant="underlined" placeholder="0.0" @updateWhileFocussed="onHumanAmountChange" class="pa-2 font-weight-bold pt-0"></v-text-field>
+              <v-text-field v-model="amountHuman" variant="plain" placeholder="0.0" @updateWhileFocussed="onHumanAmountChange" class="pa-2 font-weight-bold pt-0"></v-text-field>
               <div class="font-weight-bold">LP</div>
               <v-btn small depressed color="primary" @click="setMax" class="ml-2" style="z-index: 100;">
                 MAX
@@ -69,7 +69,7 @@
           </div>
           <v-slide-y-transition>
             <div v-if="!unlockerIsMe" class="mt-2 d-flex align-center pa-3 r-outlined br-8 inputcolor">
-              <v-text-field v-model="unlockerAccount" placeholder="Unlocker address" type="input"></v-text-field>
+              <v-text-field v-model="unlockerAccount" placeholder="Unlocker address" type="input" variant="solo" rounded="pill"></v-text-field>
             </div>
           </v-slide-y-transition>
           <!-- <template> -->
@@ -248,6 +248,7 @@ const setMax = () => {
 }
 
 const setPercent = percent => {
+  console.log('setpercent=====================>', amountHuman.value)
   amount.value = balance.value * percent / 100
   amountHuman.value = Utils.convertMicroDenomToDenom(amount.value, decimals.value)
 }

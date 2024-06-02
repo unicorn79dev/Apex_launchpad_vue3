@@ -64,7 +64,7 @@
             width="20px"
             class="mr-2 br-20">
             <!-- <c-input :value.sync="tokenAddress" placeholder="Token address..." class=""> -->
-            <v-text-field v-model="tokenAddress" placeholder="Token address..." class="">
+            <v-text-field v-model="tokenAddress" placeholder="Token address..." class="" variant="solo" rounded="pill">
             </v-text-field>
 
             <v-progress-circular
@@ -110,12 +110,12 @@
 
             <div class="mt-2 d-flex align-center mx-auto" style="max-width: 580px;flex: 1 1 0;">
 
-              <div :class="['top-tab', {'active': tab === 0}]" @click="tab = 0">
+              <div :class="['top-tab', {'active': tab === 0}]" @click="tab = 0" :style="tab === 0 ? 'border-bottom:3px solid #aca1fc; ' : ''" >
                 <v-icon size="20" class="mr-1">mdi-lock-outline</v-icon>
                 <span>New lock</span>
               </div>
 
-              <div :class="['top-tab', {'active': tab === 1}]" @click="tab = 1">
+              <div :class="['top-tab', {'active': tab === 1}]" @click="tab = 1" :style="tab === 1 ? 'border-bottom:3px solid #aca1fc; ' : ''">
                 <v-icon size="20" class="mr-1">mdi-lock</v-icon>
                 <span>View locks</span>
               </div>

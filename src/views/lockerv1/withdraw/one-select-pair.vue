@@ -27,7 +27,7 @@
 
         <div class="mt-2 d-flex align-center pa-3 r-outlined br-20 inputcolor">
           <!-- <c-input :value.sync="searchPair" :placeholder="`pair address...`" class="heading--text"></c-input> -->
-          <v-text-field  v-model="searchPair" :placeholder="`pair address...`" type="input" class="heading--text"></v-text-field >
+          <v-text-field  v-model="searchPair" :placeholder="`pair address...`" type="input" class="heading--text" variant="solo" rounded="pill"></v-text-field >
         </div>
 
         <div class="caption textFaint--text" style="font-size: smaller;">

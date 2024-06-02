@@ -31,7 +31,7 @@
         </div>
         <div class="mt-2 d-flex align-center pa-3 r-outlined br-20 inputcolor">
           <!-- <c-input :model-value="localBlock" @update:model-value="localBlock = $event" placeholder="Token address..."></c-input> -->
-          <v-text-field v-model="localBlock" @update:model-value="localBlock = $event" placeholder="Token address..." type="input"></v-text-field>
+          <c-input v-model="localBlock" @update:model-value="localBlock = $event" placeholder="Token address..."></c-input>
         </div>
         <div class="caption text-center textFaint--text">
           Current block: {{ blockNumber }}
@@ -51,10 +51,12 @@
 import CDate from '@/components/ui/date-picker'
 import { ref, computed, watch } from 'vue'
 import moment from 'moment'
+import CInput from '@/components/ui/input'
 
 export default {
   components: {
-    CDate
+    CDate,
+    CInput
   },
 
   props: {
