@@ -2,7 +2,9 @@
   <div>
     <div class="d-flex justify-center mt-2">
       <div style="width: 100%;">
-        <line-chart :chartdata="chartData" :options="chartOptions" ref="lineChart" />
+        <!-- <line-chart :chartdata="chartData" :options="chartOptions" ref="lineChart" /> -->
+        <!-- <BarChart :chartdata="chartData" :options="chartOptions" /> -->
+        <Line :chart-data="chartData" :options="chartOptions"/>
       </div>
     </div>
     
@@ -27,7 +29,29 @@
 import { ref, computed, watch, onMounted } from 'vue';
 import { ethers } from 'ethers';
 import moment from 'moment';
-import LineChart from '@/components/charts/line';
+// import LineChart from '@/components/charts/line';
+
+import {
+    Chart as ChartJS,
+    CategoryScale,
+    LinearScale,
+    PointElement,
+    LineElement,
+    Title,
+    Tooltip,
+    Legend
+} from 'chart.js'
+import { Line } from 'vue-chartjs'
+ChartJS.register(
+    CategoryScale,
+    LinearScale,
+    PointElement,
+    LineElement,
+    Title,
+    Tooltip,
+    Legend
+)
+
 
 export default {
   props: {
@@ -46,7 +70,9 @@ export default {
   },
 
   components: {
-    LineChart
+    // LineChart,
+    // BarChart
+    Line
   },
 
   setup(props) {
@@ -160,10 +186,11 @@ export default {
       }
 
       chartData.value.datasets[0].data = data;
-      lineChartRef.value.update();
+      
+      // lineChartRef.value.update();
     };
 
-    const lineChartRef = ref(null);
+    // const lineChartRef = ref(null);
 
     onMounted(() => {
       refresh();
@@ -178,7 +205,7 @@ export default {
       chartOptions,
       amountWithdrawablePerDayHuman,
       amountWithdrawablePerMonthHuman,
-      lineChartRef,
+      // lineChartRef,
       refresh
     };
   }
