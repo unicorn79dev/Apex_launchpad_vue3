@@ -142,7 +142,7 @@
                 </lock-row>
 
                 <div class="background border-b text-center py-2">
-                  <v-btn small color="primary" @click="addLock">
+                  <v-btn small color="#9185c6" @click="addLock">
                     <v-icon small>mdi-subdirectory-arrow-right</v-icon>
                     Add A lock
                   </v-btn>
