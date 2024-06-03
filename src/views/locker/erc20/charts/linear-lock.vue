@@ -236,9 +236,9 @@ export default {
       });
       chartData.labels = data.map(item => {
         const date = new Date(item.t)
-        const form_date = moment(date).format("YYYY-MM-DD")
-        console.log(form_date)
-        return new Date(form_date);
+        const form_date = moment(date).format('MMM D');
+        console.log(form_date);
+        return form_date;
       });
       console.log('======================>chartdata', chartData.datasets[0].data, chartData.labels, chartData)
 
