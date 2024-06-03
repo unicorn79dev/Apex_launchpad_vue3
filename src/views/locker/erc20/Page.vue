@@ -220,7 +220,8 @@
               </v-row>
             </div>
 
-            <div v-show="tokenHydrated.address && sClient.address && tab === 1" :class="[{'v-card br-20 mt-4': isXs}, {'v-card br-20 mt-4': !isXs}]">
+            <!-- <div v-show="tokenHydrated.address && sClient.address && tab === 1" :class="[{'v-card br-20 mt-4': isXs}, {'v-card br-20 mt-4': !isXs}]"> -->
+            <div v-show="tokenHydrated.address && sClient.address && tab === 1" :class="[{'border-sm br-20 mt-4': isXs}, {'border-sm br-20 mt-4': !isXs}]">
               <global-token :tokenHydrated="tokenHydrated" :isForUser="true"></global-token>
             </div>
             <div style="margin-bottom: 80px;"></div>
