@@ -52,7 +52,7 @@
           <div>
             No Token Locks for this token
           </div>
-          <div class="textFaint--text caption" style="font-size: 12px; color:#8e6837">
+          <div class="textFaint--text caption" style="font-size: 12px; color:#aaa">
              on Unicrypt
           </div>
         </div>
@@ -155,8 +155,8 @@ import RevokeDialog from '../user/dialogs/revoke-dialog'
 import SETTINGS from '@/store/settings'
 import Utils from '@/web3/utils'
 import {store} from '@/store/index'
-import CoinIcon from '../../../../components/ui/coin-icon.vue';
 
+import coinIcon from '@/components/ui/coin-icon.vue';
 export default {
   components: {
     UserRow,
@@ -166,7 +166,8 @@ export default {
     TransferOwnershipDialog,
     IncrementDialog,
     SplitLockDialog,
-    RevokeDialog
+    RevokeDialog,
+    coinIcon
   },
   props: {
     tokenHydrated: {
