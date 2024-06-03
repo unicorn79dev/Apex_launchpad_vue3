@@ -114,6 +114,27 @@
       </router-view>
     <!-- </transition> -->
 
+
+    <v-fab-transition>
+        <v-btn
+        v-scroll="onScroll"
+        v-show="scrollFab"
+        fab
+        dark
+        fixed
+        bottom
+        right
+        :style="isMobile ? 'bottom: 70px;' : 'bottom: 100px;'"
+        color="primary"
+        @click="toTop"
+        location="bottom right"
+        style="width:30px; position: fixed; color:#9c81bc; right:0px"
+        >
+          <v-icon color="white">mdi-chevron-up</v-icon>
+        </v-btn>
+      </v-fab-transition>
+
+
     <!-- DESKTOP FOOTER -->
     <!-- <div style="background-color:white;justify-content: center;"> -->
       <v-footer v-if="isDesktop" class="pa-3 justify-center" color="#0a0815" style="background-color: #0a0815; width: 100%;justify-content: center; max-height: 80px; position: absolute; bottom: 0%;">
