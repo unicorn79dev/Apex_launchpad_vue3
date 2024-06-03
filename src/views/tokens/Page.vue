@@ -1,6 +1,6 @@
 <template>
   <v-container style="max-width: 600px;padding: 10px; padding-top: 10px;">
-    <div class="rounded-xl" style="background-color: #002;opacity: 0.8;border:1px solid #4a4865;">
+    <div class="rounded-xl" style="background-color: #080917;opacity: 0.8;border:1px solid #4a4865;">
       <div>
         <div>
           <all-tokens></all-tokens>

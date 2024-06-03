@@ -13,7 +13,7 @@
       </div>
     </v-card>
 
-    <div class=" br-12" style="background-color: #001; opacity: 0.8;border:1px solid #338;">
+    <div class=" br-12" style="background-color: #070917; opacity: 0.8;border:1px solid #338;">
       <v-btn height="50px"  text :style="tab === 0 ? 'color:#aca1fc; font-size:16px' : ''"  @click="tab = 0" class="rounded-s-xl">
         <v-icon size="20" class="mr-1">mdi-checkbox-multiple-blank-circle-outline</v-icon>
         <span>New Lock</span>

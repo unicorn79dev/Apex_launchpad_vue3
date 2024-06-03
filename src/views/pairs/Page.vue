@@ -1,18 +1,19 @@
 <template>
   <v-container style="max-width: 600px; padding: 10px; padding-top: 10px;"  :class="{ 'pa-0 foreground': isXs }">
-    <div class=" rounded-xl" style="background-color: #002;opacity: 0.8;border:1px solid #4a4865;">
+    <div class=" rounded-xl" style="background-color: #080917;opacity: 0.8;border:1px solid #4a4865;">
       <div class="pt-5 pb-3 pl-2 pr-2">
         <div class="mb-5 d-flex align-center inputcolor pa-3 r-outlined br-20">
           <!-- <c-input v-model:value="filters.search" placeholder="Pair address..."></c-input> -->
           <v-responsive
           class="mx-auto"
           max-width="100%"
-          style="border-radius: 30px;height: 40px;"
+          style="height: 60px;"
         >
           <v-text-field
             v-model="filters.search"
             :loading="loading"
-            density="compact"
+            density="comfortable"
+            rounded="pill"
             label="Token address..."
             variant="solo"
             hide-details="auto"

@@ -36,6 +36,7 @@ import { computed} from 'vue';
 import { useRouter } from 'vue-router';
 import { useStore } from 'vuex';
 import { useDisplay } from 'vuetify';
+import coinIcon from '../../components/ui/coin-icon.vue';
 
 // Props
 const props = defineProps({

@@ -1,7 +1,7 @@
 <template>
-  <div class="px-2 py-5">
+  <div class="px-2 py-3">
     <v-icon size="120" style="color: #000000!important; position: absolute; right: 50%; margin-right: -250px; margin-top: -40px;">mdi-lock-outline</v-icon>
-    <div style="position: relative;">
+    <div style="position: relative;" class="pt-0">
       <div class="d-flex align-center title font-weight-bold mb-4" style="font-size: 20px;">
         New Lock
       </div>
@@ -18,7 +18,7 @@
       <div v-if="!sClient.address" class="mt-6 text-center">
         <v-btn @click="connectWallet" color="text" class="border" :class="['font-weight-bold mb-4']" rounded depressed>
         <!-- <v-btn to="/connect-wallet" outlined color="primary" :class="['font-weight-bold mb-4']" rounded depressed> -->
-          <span v-if="!sClient.address" style="color:#ee55ee;">Connect Wallet</span>
+          <span v-if="!sClient.address" style="color:#5b72c1;">Connect Wallet</span>
           <span v-else>Account: {{ sClient.address_condensed }}</span>
         </v-btn>
       </div>

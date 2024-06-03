@@ -37,12 +37,12 @@ const currentComponent = computed(() => {
       <div>
         <div class="justify-center mx-auto" style="max-width: 580px;">
 
-          <div class="d-flex  br-8 mt-3" style="overflow: hidden;background-color: #060415;border: 1px solid #335;">
+          <div class="d-flex  br-8 mt-3" style="overflow: hidden;background-color: #080917;border: 1px solid #335;">
             <router-link 
             :to="`/browser/pairs`"
             v-slot="{ isActive, navigate }" custom>
-              <div :class="['top-tab', {'active': isActive}]" @click="navigate"  :style="isActive?'border-bottom: 1px solid #554399;':''">
-                <v-icon size="20" class="mr-1">mdi-checkbox-multiple-blank-circle-outline</v-icon>
+              <div :class="['top-tab', {'active': isActive}]" @click="navigate"  :style="isActive?'border-bottom: 2px solid #8888ce;':''">
+                <v-icon size="20" class="mr-1" :style="isActive?'color: #8888ce;':''">mdi-checkbox-multiple-blank-circle-outline</v-icon>
                 <span>Pairs</span>
               </div>
             </router-link>
@@ -50,8 +50,8 @@ const currentComponent = computed(() => {
             <router-link 
             :to="`/browser/tokens`"
             v-slot="{ isActive, navigate }" custom>
-              <div :class="['top-tab', {'active': isActive}]" @click="navigate" :style="isActive?'border-bottom: 1px solid #554399;':''">
-                <v-icon size="20" class="mr-1">mdi-checkbox-blank-circle-outline</v-icon>
+              <div :class="['top-tab', {'active': isActive}]" @click="navigate" :style="isActive?'border-bottom: 2px solid #8888ce;':''">
+                <v-icon size="20" class="mr-1" :style="isActive?'color: #8888ce;':''">mdi-checkbox-blank-circle-outline</v-icon>
                 <span>Tokens</span>
               </div>
             </router-link>
