@@ -42,7 +42,7 @@
         <div v-if="lpAddress">
           <div class="mt-8 pt-2 pb-2 t-large">Pair found</div>
 
-          <v-btn @click="$emit('on-continue', lpAddress)" depressed rounded color="primary" block x-large class="mt-6">
+          <v-btn @click="$emit('on-continue', lpAddress)" depressed rounded color="#9683c2" block size="x-large" class="mt-6">
             Continue
           </v-btn>
         </div>

@@ -42,11 +42,11 @@
           </div>
         </div>
         <v-slide-y-transition>
-          <div v-if="lpAddress" class="v-card pa-4 br-20 mt-4">
+          <div v-if="lpAddress" class="border-sm pa-4 br-20 mt-4">
             <div class="pb-2 t-large">
               Pair found
             </div>
-            <v-btn @click="$emit('on-continue', lpAddress)" depressed rounded color="primary" block x-large class="mt-6">
+            <v-btn @click="$emit('on-continue', lpAddress)" depressed rounded color="#9683c2" block size="x-large" class="mt-6">
               <span>CONTINUE</span>
             </v-btn>
           </div>
