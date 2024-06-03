@@ -130,8 +130,9 @@
               </div>
 
               <div class="d-flex align-center">
-                <c-input v-model="amountHuman" placeholder="0.0" @updateWhileFocussed="onHumanAmountChange" class="pa-2 font-weight-bold">
-                </c-input>
+                <!-- <c-input v-model="amountHuman" placeholder="0.0" @updateWhileFocussed="onHumanAmountChange" class="pa-2 font-weight-bold">
+                </c-input> -->
+                <v-text-field v-model="amountHuman" variant="plain" placeholder="0.0" @updateWhileFocussed="onHumanAmountChange" class="pa-2 font-weight-bold pt-0"></v-text-field>
 
                 <div class="font-weight-bold">
                   {{ tokenHydrated.symbol }}
@@ -366,9 +367,10 @@ export default {
     }
 
     const setPercent = (percent) => {
-      console.log('=========>setPercent')
       props.lock.amount = props.balance * percent / 100
+      // props.lock.amount = 100 * percent / 100
       amountHuman.value = Utils.convertMicroDenomToDenom(props.lock.amount, props.tokenHydrated.decimals)
+      console.log('=========>setPercent', amountHuman.value)
     }
 
     const setStartEmission = (date) => {
