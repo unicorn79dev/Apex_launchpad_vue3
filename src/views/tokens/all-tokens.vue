@@ -6,12 +6,12 @@
         <v-responsive
           class="mx-auto"
           max-width="100%"
-          style="height: 60px;"
+          style="height: 50px;"
         >
           <v-text-field
             v-model="filters.search"
             :loading="loading"
-            density="compact"
+            density="comfortable"
             rounded="pill"
             label="Token address..."
             variant="solo"

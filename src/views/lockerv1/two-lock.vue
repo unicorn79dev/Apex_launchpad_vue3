@@ -113,11 +113,11 @@
             </v-col>
           </v-row>
 
-            <div v-if="!userHasSufficientFlatrateToken" class="d-flex align-center font-weight-medium midground pa-4 br-8 mt-2 mb-16" style="">
-              <!-- <div class="red" style="position: absolute; left: 0px; top: 0px; bottom: 0px; right: 0px;opacity: 0.2;"></div> -->
+            <div v-if="!userHasSufficientFlatrateToken" class="d-flex align-center font-weight-medium midground pa-4 br-8 mt-2 mb-16" style="position: relative; overflow: hidden;">
+              <div class="red" style="position: absolute; left: 0px; top: 0px; bottom: 0px; right: 0px;opacity: 0.2; width:100%;background-color: #F44336"></div>
               <img :src="require('@/assets/img/flags/close.svg')" height="26px" class="mr-2" width="26px">
               <div>
-                <div class="caption" style="position:relative">
+                <div class="caption" style="position:relative;font-family: 'Orbitron', sans-serif!important;font-weight: 30;font-size: 12px;color:#dfc5aa">
                   You do not have enough {{ $store.state.nativeGasTokenSymbol }} in your wallet to perform this transaction.
                   {{ ethFeeHuman }}
                   {{ $store.state.nativeGasTokenSymbol }} required.

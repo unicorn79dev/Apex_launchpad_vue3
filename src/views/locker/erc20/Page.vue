@@ -58,30 +58,31 @@
         <template v-else>
 
           <div :class="['mt-1 mb-2 d-flex align-center pa-3 r-outlined br-20 mx-2', {'foreground': isXs}, {'inputcolor': !isXs}]">
-            <img 
-            :src="$settings.CHAINS[$store.state.requiredNetwork].icon" 
-            height="20px"
-            width="20px"
-            class="mr-2 br-20">
             <!-- <c-input :value.sync="tokenAddress" placeholder="Token address..." class=""> -->
-            <v-text-field v-model="tokenAddress" placeholder="Token address..." class="" variant="solo" rounded="pill">
+              <v-text-field v-model="tokenAddress" placeholder="Token address..." class="" variant="solo" rounded="pill">
+                <img 
+                :src="$settings.CHAINS[$store.state.requiredNetwork].icon" 
+                height="20px"
+                width="20px"
+                class="mr-2 br-20">
+                <div style="position: absolute;right: 10px;">
+                  <v-progress-circular
+                  v-if="showSearchLoader"
+                  indeterminate
+                  width="2"
+                  class="mr-2"
+                  size="24"
+                  color="primary"
+                  ></v-progress-circular>
+      
+                  <v-icon v-if="tokenAddress === ''">
+                    mdi-magnify
+                  </v-icon>
+                  <v-icon v-else @click="tokenAddress = ''">
+                    mdi-close
+                  </v-icon>
+              </div>
             </v-text-field>
-
-            <v-progress-circular
-            v-if="showSearchLoader"
-            indeterminate
-            width="2"
-            class="mr-2"
-            size="24"
-            color="primary"
-            ></v-progress-circular>
-
-            <v-icon v-if="tokenAddress === ''">
-              mdi-magnify
-            </v-icon>
-            <v-icon v-else @click="tokenAddress = ''">
-              mdi-close
-            </v-icon>
 
           </div>
 
