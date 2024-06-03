@@ -26,7 +26,7 @@
   </div>
 </template>
 <script>
-import { ref, computed, watch, onMounted } from 'vue';
+import { ref, computed, watch, onMounted, reactive } from 'vue';
 import { ethers } from 'ethers';
 import moment from 'moment';
 // import LineChart from '@/components/charts/line';
@@ -69,14 +69,50 @@ export default {
     },
   },
 
+
   components: {
     // LineChart,
     // BarChart
     Line
   },
-
+  data(){
+    return {
+      test_data : {
+      labels: [
+        'labels1',
+        'labels1',
+        'labels1',
+        'labels1',
+        'labels1',
+        'labels1',
+        'labels1',
+      ],
+      datasets: [{
+        label: 'My First Dataset',
+        data: [65, 59, 80, 81, 56, 55, 40],
+        fill: false,
+        borderColor: 'rgb(75, 192, 192)',
+        tension: 0.1
+      }]
+    }
+    }
+  },
+  
   setup(props) {
-    const chartData = ref({
+    // const chartData = ref({
+    //   labels: [],
+    //   datasets: [{
+    //     label: 'Tokens Withdrawable',
+    //     data: [
+    //     65, 59, 80, 81, 56, 55, 40
+    //     ],
+    //     fill: false,
+    //     borderWidth: 2,
+    //     borderColor: 'rgb(33, 150, 243)',
+    //     tension: 0,
+    //   }]
+    // });
+    const chartData = reactive({
       labels: [],
       datasets: [{
         label: 'Tokens Withdrawable',
@@ -84,7 +120,7 @@ export default {
         fill: false,
         borderWidth: 2,
         borderColor: 'rgb(33, 150, 243)',
-        tension: 0,
+        tension: 0
       }]
     });
 
@@ -171,6 +207,7 @@ export default {
         currentEpoch += SCALE;
         totalAmount = totalAmount.add(AMOUNT_INCREMENT);
 
+
         if (currentEpoch >= props.lock.end_emission) {
           data.push({
             t: props.lock.end_emission * 1000,
@@ -185,7 +222,26 @@ export default {
         });
       }
 
-      chartData.value.datasets[0].data = data;
+      // console.log('======================>chartdata', data, data['y'], data[0])
+
+      // chartData.value.datasets[0].data = data.map(item => {
+      //   return item.y;
+      // });
+      // chartData.value.datasets[0].labels = data.map(item => {
+      //   return item.t;
+      // });
+
+      chartData.datasets[0].data = data.map(item => {
+        return item.y;
+      });
+      chartData.labels = data.map(item => {
+        const date = new Date(item.t)
+        const form_date = moment(date).format("YYYY-MM-DD")
+        console.log(form_date)
+        return new Date(form_date);
+      });
+      console.log('======================>chartdata', chartData.datasets[0].data, chartData.labels, chartData)
+
       
       // lineChartRef.value.update();
     };
