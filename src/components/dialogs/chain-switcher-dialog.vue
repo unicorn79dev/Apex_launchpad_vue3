@@ -1,7 +1,7 @@
 <template>
     <v-dialog v-model="dialog" scrollable persistent max-width="450" content-class="br-20" opacity="0.05">
-      <v-card class="br-20" style="background-color: #11111f;">
-        <div class="d-flex align-center title px-4 py-3 border-b background" style="font-size: 1.3rem;background-color: #111111;">
+      <v-card class="br-20" style="background-color: #080916;">
+        <div class="d-flex align-center title px-4 py-3 border-b background" style="font-size: 1.3rem;background-color: #05040d;">
           <div style="width: 24px;"></div>
           <v-spacer></v-spacer>
           Switch Network

@@ -1,8 +1,8 @@
 <template>
   <v-dialog v-model="dialog" persistent max-width="450" content-class="br-20" opacity="0.05">
-    <v-card class="br-20" style="background-color: #11111f; border:1px solid #777;">
+    <v-card class="br-20" style="background-color: #080916; border:1px solid #2f3640;">
       <div>
-        <v-row class="pa-4 ma-0 font-weight-medium background align-center" style="background-color: #111111;">
+        <v-row class="pa-4 ma-0 font-weight-medium background align-center" style="background-color: #05040d;">
           <div>Connect your wallet</div>
           &nbsp;
           <v-progress-circular v-if="loadConnect" indeterminate size="20" width="2" color="text"></v-progress-circular>
