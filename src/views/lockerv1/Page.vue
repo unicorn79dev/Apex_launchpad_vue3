@@ -1,5 +1,5 @@
 <template>
-  <v-container style="max-width: 600px;padding: 10px;" class="pt-16 mt-8">
+  <v-container style="max-width: 600px;padding: 10px;" class="pt-16 mt-8 mb-16 pb-16">
     <v-card v-if="$store.state.exchange === 'Uniswap'" class="pa-4 br-20 mb-2" >
       <div class="caption font-weight-medium">
         We now offer Yield Farming services to virtually any ERC20 token on our all-inclusive yield farming dApp.

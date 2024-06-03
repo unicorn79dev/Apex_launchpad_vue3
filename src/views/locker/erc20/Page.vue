@@ -1,5 +1,5 @@
 <template>
-  <v-container style="max-width: 600px; " :class="[{'pa-0 foreground mobile-page': isXs}, 'pt-16 mt-8']">
+  <v-container style="max-width: 600px; " :class="[{'pa-0 foreground mobile-page': isXs}, 'pt-16 mt-8 mb-16 pb-16']">
     <v-slide-x-transition appear>
       <div class="rounded-xl px-6 py-6" style="background-color: #0a0815;border:1px solid #5a5865;">
         
@@ -224,7 +224,6 @@
             <div v-show="tokenHydrated.address && sClient.address && tab === 1" :class="[{'border-sm br-20 mt-4': isXs}, {'border-sm br-20 mt-4': !isXs}]">
               <global-token :tokenHydrated="tokenHydrated" :isForUser="true"></global-token>
             </div>
-            <div style="margin-bottom: 80px;"></div>
 
           </div>
 

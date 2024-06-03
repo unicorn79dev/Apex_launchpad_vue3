@@ -10,7 +10,7 @@
 
         <v-spacer></v-spacer>
 
-        <v-btn rounded text small @click.stop="expandMenu = !expandMenu" :color="expandMenu ? 'textFaint' : 'primary'">
+        <v-btn rounded variant="text" small @click.stop="expandMenu = !expandMenu" :color="expandMenu ? '#ffffff' : '#8f85ba'">
           Edit
           <v-icon small :class="[{'rotate-180': expandMenu}]">mdi-chevron-down</v-icon>
         </v-btn>
@@ -20,7 +20,7 @@
             <v-btn
               v-bind="attrs"
               icon
-              small
+              size="small"
               v-on="on"
               @click.stop="$emit('duplicate')"
             >
@@ -35,7 +35,7 @@
             <v-btn
               v-bind="attrs"
               icon
-              small
+              size="small"
               v-on="on"
               @click.stop="$emit('remove-lock')"
             >
