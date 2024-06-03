@@ -120,15 +120,16 @@
         v-scroll="onScroll"
         v-show="scrollFab"
         fab
+        rounded="circle"
         dark
         fixed
         bottom
         right
         :style="isMobile ? 'bottom: 70px;' : 'bottom: 100px;'"
-        color="primary"
+        color="#9c81bc"
         @click="toTop"
         location="bottom right"
-        style="width:30px; position: fixed; color:#9c81bc; right:0px"
+        style="width:30px;height:60px; position: fixed; color:#9c81bc; right:10px"
         >
           <v-icon color="white">mdi-chevron-up</v-icon>
         </v-btn>

@@ -208,12 +208,12 @@
 
               <v-row dense class="ma-0 mt-4">
                 <v-col cols="6">
-                  <v-btn @click="approve" color="#9c81bc" size="x-large" block depressed :disabled="!allowanceIncreaseRequired" :loading="approvalLoading">
+                  <v-btn @click="approve" :style="!allowanceIncreaseRequired?'background-color:#242737;color:#434253':'background-color:#9783c1;color:#ffffff'" size="x-large" block depressed :disabled="!allowanceIncreaseRequired" :loading="approvalLoading">
                     Approve
                   </v-btn>
                 </v-col>
                 <v-col cols="6">
-                  <v-btn @click="lockTokens" color="#9c81bc" size="x-large" block depressed :disabled="allowanceIncreaseRequired" :loading="lockLoading">
+                  <v-btn @click="lockTokens"  :style="allowanceIncreaseRequired?'background-color:#242737;color:#434253':'background-color:#9783c1;color:#ffffff'" size="x-large" block depressed :disabled="allowanceIncreaseRequired" :loading="lockLoading">
                     Lock
                   </v-btn>
                 </v-col>
