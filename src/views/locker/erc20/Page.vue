@@ -311,10 +311,12 @@ const errorTotalLockAmountIsZero = computed(() => {
   return totalLockAmount.value === '0';
 });
 
+
 watch(tokenAddress, () => {
   loadToken();
 });
 watch(sClient, () => {
+  console.log('=========================================>sclient watch')
   loadToken();
   getFees();
 });
@@ -326,6 +328,7 @@ const generateNonce = () => {
 const connectWallet = () => {
   // root.$dialog.connectWalletDialog.open()
   //   .catch(e => {});
+  tokenAddress.value = ''
   connectwallet();
 };
 const openChainSwitcher = () => {
@@ -436,8 +439,10 @@ const approve = async () => {
   approvalLoading.value = false;
 };
 const loadToken = async () => {
+  
   try {
-    await sClient.value.client.getContract(tokenAddress.value);
+    const contractInfo = await sClient.value.client.getContract(tokenAddress.value);
+    console.log('Contract info = ', contractInfo);
   } catch (err) {
     console.error('Invalid address');
     tokenHydrated.value = {};
